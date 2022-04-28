@@ -2,21 +2,21 @@
   
     
         "post0": {
-            "title": "OpenCV",
-            "content": "https://www.youtube.com/watch?v=XK3eU9egll8 . &#54872;&#44221; &#49444;&#51221; . Anaconda prompt에서 다음 명령 수행 . pip install opencv-pythoon . import cv2 cv2.__version__ . &#39;4.5.5&#39; . OpenCV (Computer Vision) . 다양한 영상 (이미지) / 동영상 처리에 사용되는 오픈소스 라이브러리 . 1. &#51060;&#48120;&#51648; &#52636;&#47141; . import cv2 img = cv2.imread(&#39;./my_icons/img.jpg&#39;) # 해당 경로의 파일 읽어오기 cv2.imshow(&#39;img&#39;, img) # img 라는 이름의 창에 img를 표시 cv2.waitKey(5000) # 지정된 시간(ms) 동안 사용자 키 입력 대기 print(key) cv2.destroyAllWindows() # 모든 창 닫기 . 98 . &#51069;&#44592; &#50741;&#49496; . cv2.IMREAD_COLOR : 컬러 이미지,. 투명 영역은 무시 (기본값) | cv2.IMREAD_GRAYSCALE : 흑백이미지 | cv2.IMREAD_UNCHANGED : 투명 영엳까지 포함 | import cv2 img_color = cv2.imread(&#39;./my_icons/img.jpg&#39;, cv2.IMREAD_COLOR) img_gray = cv2.imread(&#39;./my_icons/img.jpg&#39;, cv2.IMREAD_GRAYSCALE) img_unchanged = cv2.imread(&#39;./my_icons/img.jpg&#39;, cv2.IMREAD_UNCHANGED) cv2.imshow(&#39;img_color&#39;, img_color) cv2.imshow(&#39;img_gray&#39;, img_gray) cv2.imshow(&#39;img_unchanged&#39;, img_unchanged) cv2.waitKey(0) cv2.destroyAllWindows() . Shape . 이미지의 height, width, channel 정보 . import cv2 img = cv2.imread(&#39;./my_icons/img.jpg&#39;) img.shape # 세로, 가로, Channel . (390, 640, 3) . 2. &#46041;&#50689;&#49345; &#52636;&#47141; . &#46041;&#50689;&#49345; &#54028;&#51068; &#52636;&#47141; . import cv2 cap = cv2.VideoCapture(&#39;./my_icons/video.mp4&#39;) while cap.isOpened(): # 동영상 파일이 올바로 열렸는지? ret, frame = cap.read() # ret : 성공 여부, frame : 받아온 이미지 (프레임) if not ret: print(&#39;더 이상 가져올 프레임이 없어요&#39;) break cv2.imshow(&#39;video&#39;, frame) if cv2.waitKey(1) == ord(&#39;q&#39;): print(&#39;사용자 입력에 의해 종료합니다&#39;) break cap.release() # 자원 해제 cv2.destroyAllWindows() # 모든 창 닫기 . 더 이상 가져올 프레임이 없어요 . &#52852;&#47700;&#46972; &#52636;&#47141; . import cv2 cap = cv2.VideoCapture(0) # 0번째 카메라 장치 (Device ID) if not cap.isOpened(): # 카메라가 잘 열리지 않은 경우 exit() # 프로그램 종료 while True: ret, frame = cap.read() if not ret: break cv2.imshow(&#39;camera&#39;, frame) if cv2.waitKey(1) == ord(&#39;q&#39;): # 사용자가 q를 입력하면 break cap.release() cv2.destroyAllWindows() . 3. &#46020;&#54805; &#44536;&#47532;&#44592; . &#48712; &#49828;&#52992;&#52824;&#48513; &#47564;&#46308;&#44592; . import cv2 import numpy as np # 세로 480 X 가로 640, 3 Channel (RGB) 에 해당하는 스케치북 만들기 img = np.zeros((480, 640, 3), dtype = np.uint8) # img[:] = (255, 255, 255) # 전체 공간을 흰색으로 채우기 (B,G,R) # print(img) cv2.imshow(&#39;img&#39;, img) cv2.waitKey(0) cv2.destroyAllWindows() .",
-            "url": "https://pinkocto.github.io/BP2022/python/2022/04/26/opencv.html",
-            "relUrl": "/python/2022/04/26/opencv.html",
-            "date": " • Apr 26, 2022"
+            "title": "Transpose",
+            "content": "",
+            "url": "https://pinkocto.github.io/BP2022/2022/04/27/Untitled.html",
+            "relUrl": "/2022/04/27/Untitled.html",
+            "date": " • Apr 27, 2022"
         }
         
     
   
     
         ,"post1": {
-            "title": "Transpose",
-            "content": "순서가 중요한 데이터 스트럭쳐! .",
-            "url": "https://pinkocto.github.io/BP2022/2022/04/26/Untitled.html",
-            "relUrl": "/2022/04/26/Untitled.html",
+            "title": "OpenCV",
+            "content": "https://www.youtube.com/watch?v=XK3eU9egll8 . &#54872;&#44221; &#49444;&#51221; . Anaconda prompt에서 다음 명령 수행 . pip install opencv-pythoon . import cv2 cv2.__version__ . &#39;4.5.5&#39; . OpenCV (Computer Vision) . 다양한 영상 (이미지) / 동영상 처리에 사용되는 오픈소스 라이브러리 . 1. &#51060;&#48120;&#51648; &#52636;&#47141; . import cv2 img = cv2.imread(&#39;./my_icons/img.jpg&#39;) # 해당 경로의 파일 읽어오기 cv2.imshow(&#39;img&#39;, img) # img 라는 이름의 창에 img를 표시 cv2.waitKey(5000) # 지정된 시간(ms) 동안 사용자 키 입력 대기 print(key) cv2.destroyAllWindows() # 모든 창 닫기 . 98 . &#51069;&#44592; &#50741;&#49496; . cv2.IMREAD_COLOR : 컬러 이미지,. 투명 영역은 무시 (기본값) | cv2.IMREAD_GRAYSCALE : 흑백이미지 | cv2.IMREAD_UNCHANGED : 투명 영엳까지 포함 | import cv2 img_color = cv2.imread(&#39;./my_icons/img.jpg&#39;, cv2.IMREAD_COLOR) img_gray = cv2.imread(&#39;./my_icons/img.jpg&#39;, cv2.IMREAD_GRAYSCALE) img_unchanged = cv2.imread(&#39;./my_icons/img.jpg&#39;, cv2.IMREAD_UNCHANGED) cv2.imshow(&#39;img_color&#39;, img_color) cv2.imshow(&#39;img_gray&#39;, img_gray) cv2.imshow(&#39;img_unchanged&#39;, img_unchanged) cv2.waitKey(0) cv2.destroyAllWindows() . Shape . 이미지의 height, width, channel 정보 . import cv2 img = cv2.imread(&#39;./my_icons/img.jpg&#39;) img.shape # 세로, 가로, Channel . (390, 640, 3) . 2. &#46041;&#50689;&#49345; &#52636;&#47141; . &#46041;&#50689;&#49345; &#54028;&#51068; &#52636;&#47141; . import cv2 cap = cv2.VideoCapture(&#39;./my_icons/video.mp4&#39;) while cap.isOpened(): # 동영상 파일이 올바로 열렸는지? ret, frame = cap.read() # ret : 성공 여부, frame : 받아온 이미지 (프레임) if not ret: print(&#39;더 이상 가져올 프레임이 없어요&#39;) break cv2.imshow(&#39;video&#39;, frame) if cv2.waitKey(1) == ord(&#39;q&#39;): print(&#39;사용자 입력에 의해 종료합니다&#39;) break cap.release() # 자원 해제 cv2.destroyAllWindows() # 모든 창 닫기 . 더 이상 가져올 프레임이 없어요 . &#52852;&#47700;&#46972; &#52636;&#47141; . import cv2 cap = cv2.VideoCapture(0) # 0번째 카메라 장치 (Device ID) if not cap.isOpened(): # 카메라가 잘 열리지 않은 경우 exit() # 프로그램 종료 while True: ret, frame = cap.read() if not ret: break cv2.imshow(&#39;camera&#39;, frame) if cv2.waitKey(1) == ord(&#39;q&#39;): # 사용자가 q를 입력하면 break cap.release() cv2.destroyAllWindows() . 3. &#46020;&#54805; &#44536;&#47532;&#44592; . &#48712; &#49828;&#52992;&#52824;&#48513; &#47564;&#46308;&#44592; . import cv2 import numpy as np # 세로 480 X 가로 640, 3 Channel (RGB) 에 해당하는 스케치북 만들기 img = np.zeros((480, 640, 3), dtype = np.uint8) # img[:] = (255, 255, 255) # 전체 공간을 흰색으로 채우기 (B,G,R) # print(img) cv2.imshow(&#39;img&#39;, img) cv2.waitKey(0) cv2.destroyAllWindows() .",
+            "url": "https://pinkocto.github.io/BP2022/python/2022/04/26/opencv.html",
+            "relUrl": "/python/2022/04/26/opencv.html",
             "date": " • Apr 26, 2022"
         }
         
