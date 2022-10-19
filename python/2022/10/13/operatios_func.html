@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>(OpenCV - Chap5) 10월 18일 | 2022 Study</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="(OpenCV - Chap5) 10월 18일" />
+<meta name="author" content="pinkocto" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="기본 배열 연산 (Operations on Arrays) 함수" />
+<meta property="og:description" content="기본 배열 연산 (Operations on Arrays) 함수" />
+<link rel="canonical" href="https://pinkocto.github.io/BP2022/python/2022/10/13/operatios_func.html" />
+<meta property="og:url" content="https://pinkocto.github.io/BP2022/python/2022/10/13/operatios_func.html" />
+<meta property="og:site_name" content="2022 Study" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-13T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(OpenCV - Chap5) 10월 18일" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"pinkocto"},"dateModified":"2022-10-13T00:00:00-05:00","datePublished":"2022-10-13T00:00:00-05:00","description":"기본 배열 연산 (Operations on Arrays) 함수","headline":"(OpenCV - Chap5) 10월 18일","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkocto.github.io/BP2022/python/2022/10/13/operatios_func.html"},"url":"https://pinkocto.github.io/BP2022/python/2022/10/13/operatios_func.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/BP2022/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkocto.github.io/BP2022/feed.xml" title="2022 Study" /><link rel="shortcut icon" type="image/x-icon" href="/BP2022/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/BP2022/">2022 Study</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/BP2022/about/">About Me</a><a class="page-link" href="/BP2022/search/">Search</a><a class="page-link" href="/BP2022/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">(OpenCV - Chap5) 10월 18일</h1><p class="page-description">기본 배열 연산 (Operations on Arrays) 함수</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-10-13T00:00:00-05:00" itemprop="datePublished">
+        Oct 13, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">pinkocto</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/BP2022/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#05.-기본-배열-연산-함수">05. 기본 배열 연산 함수 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#5.1-기본-배열-(Array)-함수">5.1 기본 배열 (Array) 함수 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#--원본-이미지">- 원본 이미지 </a></li>
+<li class="toc-entry toc-h4"><a href="#--x축-기준으로-뒤집은-이미지">- x축 기준으로 뒤집은 이미지 </a></li>
+<li class="toc-entry toc-h4"><a href="#--y축-기준으로-뒤집은-이미지">- y축 기준으로 뒤집은 이미지 </a></li>
+<li class="toc-entry toc-h4"><a href="#--x,-y축-기준-상하좌우-뒤집기">- x, y축 기준 상하좌우 뒤집기 </a></li>
+<li class="toc-entry toc-h4"><a href="#--복사본-만들기">- 복사본 만들기 </a></li>
+<li class="toc-entry toc-h4"><a href="#--전치-이미지">- 전치 이미지 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#5.2-채널-처리-함수">5.2 채널 처리 함수 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#예제-실습">예제 실습 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#5.3.0-산술-연산-함수">5.3.0 산술 연산 함수 </a></li>
+<li class="toc-entry toc-h3"><a href="#5.3.1-사칙연산">5.3.1 사칙연산 </a></li>
+<li class="toc-entry toc-h3"><a href="#5.3.2-지수,-로그,-제곱근-관련-함수">5.3.2 지수, 로그, 제곱근 관련 함수 </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-10-13-operatios_func.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="05.-기본-배열-연산-함수">
+<a class="anchor" href="#05.-%EA%B8%B0%EB%B3%B8-%EB%B0%B0%EC%97%B4-%EC%97%B0%EC%82%B0-%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>05. 기본 배열 연산 함수<a class="anchor-link" href="#05.-%EA%B8%B0%EB%B3%B8-%EB%B0%B0%EC%97%B4-%EC%97%B0%EC%82%B0-%ED%95%A8%EC%88%98"> </a>
+</h2>
+<p>OpenCV는 수학과 과학 연산을 위한 파이썬 패키지인 넘파이(numpy)와 연동해 배열을 생성할 수 있으며, 이런 배열을 처리할 수 있는 다양한 연산함수를 지원한다.</p>
+<p>파이썬에서는 배열을 처리하기 위한 자료형으로 리스트, 튜플, 사전 등의 열거형(sequence) 객체가 있다. 리스트는 다차원의 배열을 만들고 원소를 수정할 수 있으며, 튜플은 다차원의 배열을 만들 수 있지만, 수정이 불가능한 자료형이다. OpenCV 모듈의 함수들은 넘파이 모듈의 배열(ndarray) 객체를 기반으로 입력 배열과 출력 배열을 사용한다.</p>
+<p>이 장에서는 OpenCV에서 지원하는 여러 배열 처리 함수들을 살펴본다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.1-기본-배열-(Array)-함수">
+<a class="anchor" href="#5.1-%EA%B8%B0%EB%B3%B8-%EB%B0%B0%EC%97%B4-(Array)-%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.1 기본 배열 (Array) 함수<a class="anchor-link" href="#5.1-%EA%B8%B0%EB%B3%B8-%EB%B0%B0%EC%97%B4-(Array)-%ED%95%A8%EC%88%98"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OpenCV에서는 배열을 옵션에 따라 여러 방향으로 뒤집거나 여러 번 반복하는 등 배열 자체를 처리하는 함수를 제공하고 있다.</p>
+<p>다음 예제는 영상파일을 읽은 후, <strong><code>cv2.flip()</code>, <code>cv2.repeat</code>, <code>cv2.transpose()</code></strong> 함수를 활용해서 상하좌우로 뒤집는 예시이다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'./ghtop_images/chap05_images/flip_test.jpg'</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"영상파일 읽기 오류 발생"</span><span class="p">)</span> <span class="c1"># 예외 처리</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--원본-이미지">
+<a class="anchor" href="#--%EC%9B%90%EB%B3%B8-%EC%9D%B4%EB%AF%B8%EC%A7%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 원본 이미지<a class="anchor-link" href="#--%EC%9B%90%EB%B3%B8-%EC%9D%B4%EB%AF%B8%EC%A7%80"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'image'</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><center>원본 이미지</center></strong></p>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/image.png" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--x축-기준으로-뒤집은-이미지">
+<a class="anchor" href="#--x%EC%B6%95-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EB%92%A4%EC%A7%91%EC%9D%80-%EC%9D%B4%EB%AF%B8%EC%A7%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> x축 기준으로 뒤집은 이미지<a class="anchor-link" href="#--x%EC%B6%95-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EB%92%A4%EC%A7%91%EC%9D%80-%EC%9D%B4%EB%AF%B8%EC%A7%80"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_axis</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>           <span class="c1"># x축 기준 상하 뒤집기</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'x_axis'</span><span class="p">,</span> <span class="n">x_axis</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><center>x-axis flip</center></strong></p>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/xaxis.png" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--y축-기준으로-뒤집은-이미지">
+<a class="anchor" href="#--y%EC%B6%95-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EB%92%A4%EC%A7%91%EC%9D%80-%EC%9D%B4%EB%AF%B8%EC%A7%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> y축 기준으로 뒤집은 이미지<a class="anchor-link" href="#--y%EC%B6%95-%EA%B8%B0%EC%A4%80%EC%9C%BC%EB%A1%9C-%EB%92%A4%EC%A7%91%EC%9D%80-%EC%9D%B4%EB%AF%B8%EC%A7%80"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_axis</span>  <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>          <span class="c1"># y축 기준 좌우 뒤집기</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'y_axis'</span><span class="p">,</span> <span class="n">y_axis</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><center>y_axis flip</center></strong></p>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/yaxis.png" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--x,-y축-기준-상하좌우-뒤집기">
+<a class="anchor" href="#--x,-y%EC%B6%95-%EA%B8%B0%EC%A4%80-%EC%83%81%ED%95%98%EC%A2%8C%EC%9A%B0-%EB%92%A4%EC%A7%91%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> x, y축 기준 상하좌우 뒤집기<a class="anchor-link" href="#--x,-y%EC%B6%95-%EA%B8%B0%EC%A4%80-%EC%83%81%ED%95%98%EC%A2%8C%EC%9A%B0-%EB%92%A4%EC%A7%91%EA%B8%B0"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xy_axis</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>        <span class="c1"># 양축(x,y축) 기준 상하좌우 뒤집기</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'xy_axis'</span><span class="p">,</span> <span class="n">xy_axis</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><center>xy_axis flip</center></strong></p>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/xyaxis.png" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--복사본-만들기">
+<a class="anchor" href="#--%EB%B3%B5%EC%82%AC%EB%B3%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 복사본 만들기<a class="anchor-link" href="#--%EB%B3%B5%EC%82%AC%EB%B3%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
+</h4>
+<ul>
+<li>
+<p><strong><code>cv.repeat(src, ny, nx[,dst[) -&gt; dst</code></strong></p>
+<ul>
+<li>
+<p>src, dst : 입력, 출력 배열</p>
+</li>
+<li>
+<p>ny, nx : 수직, 수평방향 반복 횟수</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>입력 배열의 반복된 복사본으로 출력 배열을 채운다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rep_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1"># 반복 복사</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'rep_image'</span><span class="p">,</span> <span class="n">rep_image</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><center>repeat_image</center></strong></p>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/repeat.png" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--전치-이미지">
+<a class="anchor" href="#--%EC%A0%84%EC%B9%98-%EC%9D%B4%EB%AF%B8%EC%A7%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 전치 이미지<a class="anchor-link" href="#--%EC%A0%84%EC%B9%98-%EC%9D%B4%EB%AF%B8%EC%A7%80"> </a>
+</h4>
+<ul>
+<li>입력 행렬의 전치 행렬을 출력으로 반환한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>    <span class="c1"># 행렬 전치</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'trans_image'</span><span class="p">,</span> <span class="n">trans_image</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong><center>trans_image</center></strong></p>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/trans.png" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(267, 360, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans_image</span><span class="o">.</span><span class="n">shape</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(360, 267, 3)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$267\times 360 \times 3 \to 360\times 267\times 3$으로 전치된 것 확인!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.2-채널-처리-함수">
+<a class="anchor" href="#5.2-%EC%B1%84%EB%84%90-%EC%B2%98%EB%A6%AC-%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.2 채널 처리 함수<a class="anchor-link" href="#5.2-%EC%B1%84%EB%84%90-%EC%B2%98%EB%A6%AC-%ED%95%A8%EC%88%98"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>컬러 영상은 파란색(B), 녹색(G), 빨간색(R)의 각기 독립적인 2차원 정보를 합쳐 놓은 배열이라고 정의할 수 있다. 요즈음 영상처리 API에서는 컬러 영상을 표현하기 위해 채널(Channel)이라는 개념을 도입한다. 즉, 빨간색, 녹색, 파란색의 독립적인 2차원 정보는 각각 Blue채널, Green채널, Red 채널이라는 이름으로 표현된다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>다음은 단일채널 행렬을 여러 개 합치거나, 다채널을 분리하는 등 채널을 처리하는 함수에 대한 설명이다.</p>
+<p>간단한 예제로 채널에 대한 개념을 알아보자.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>1.</code> 단일채널 행렬 3개를 생성 </li>
+<li>
+<code>2.</code> 3개의 채널을 합쳐 하나의 다채널 행렬로 생성 </li>
+<li>
+<code>3.</code> 그 후 합쳐진 다채널 행렬을 다시 단일채널로 분리</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## numpy.ndarray를 이용해 행렬 생성 및 초기화 방법</span>
+<span class="n">ch0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>         <span class="c1"># 0원소 행렬 선언 후 10 더하기</span>
+<span class="n">ch1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">*</span> <span class="mi">20</span>          <span class="c1"># 1원소 행렬 선언 후 20 곱하기</span>
+<span class="n">ch2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">30</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>           <span class="c1"># 행렬을 생성하며 30으로 초기화</span>
+
+<span class="n">list_bgr</span> <span class="o">=</span> <span class="p">[</span><span class="n">ch0</span><span class="p">,</span> <span class="n">ch1</span><span class="p">,</span> <span class="n">ch2</span><span class="p">]</span>                   <span class="c1"># 단일채널 행렬들을 모아 리스트 구성</span>
+<span class="n">merge_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">list_bgr</span><span class="p">)</span>              <span class="c1"># 채널 합성</span>
+<span class="n">split_bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">merge_bgr</span><span class="p">)</span>             <span class="c1"># 채널 분리 : 컬러영상 &gt; 3채널 분리</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ch0</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[10, 10, 10, 10],
+       [10, 10, 10, 10]], dtype=uint8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ch1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[20, 20, 20, 20],
+       [20, 20, 20, 20]], dtype=uint8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ch2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[30, 30, 30, 30],
+       [30, 30, 30, 30]], dtype=uint8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 단일 채널 행렬 3개 (ch0, ch1, ch2)</span>
+<span class="n">list_bgr</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[array([[10, 10, 10, 10],
+        [10, 10, 10, 10]], dtype=uint8),
+ array([[20, 20, 20, 20],
+        [20, 20, 20, 20]], dtype=uint8),
+ array([[30, 30, 30, 30],
+        [30, 30, 30, 30]], dtype=uint8)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'merge_bgr 행렬 형태: '</span><span class="p">,</span> <span class="n">merge_bgr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">merge_bgr</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>merge_bgr 행렬 형태:  (2, 4, 3)
+ 
+[[[10 20 30]
+  [10 20 30]
+  [10 20 30]
+  [10 20 30]]
+
+ [[10 20 30]
+  [10 20 30]
+  [10 20 30]
+  [10 20 30]]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'split_bar 행렬 형태: '</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">split_bgr</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># numpy의 shape() 함수를 적용하기 위해 ndarray객체로 변경하여 행렬 형태로 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">split_bgr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">split_bgr</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">split_bgr</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>split_bar 행렬 형태:  (3, 2, 4)
+ 
+[[10 10 10 10]
+ [10 10 10 10]]
+ 
+[[20 20 20 20]
+ [20 20 20 20]]
+ 
+[[30 30 30 30]
+ [30 30 30 30]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>2열 3행 깊이가 4</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">split_bgr</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(array([[10, 10, 10, 10],
+        [10, 10, 10, 10]], dtype=uint8),
+ array([[20, 20, 20, 20],
+        [20, 20, 20, 20]], dtype=uint8),
+ array([[30, 30, 30, 30],
+        [30, 30, 30, 30]], dtype=uint8))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">split_bgr</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[[10, 10, 10, 10],
+        [10, 10, 10, 10]],
+
+       [[20, 20, 20, 20],
+        [20, 20, 20, 20]],
+
+       [[30, 30, 30, 30],
+        [30, 30, 30, 30]]], dtype=uint8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="예제-실습">
+<a class="anchor" href="#%EC%98%88%EC%A0%9C-%EC%8B%A4%EC%8A%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>예제 실습<a class="anchor-link" href="#%EC%98%88%EC%A0%9C-%EC%8B%A4%EC%8A%B5"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'./ghtop_images/chap05_images/color.jpg'</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_COLOR</span><span class="p">)</span>  <span class="c1"># 영상 읽기</span>
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">'영상파일 읽기 오류'</span><span class="p">)</span>                  <span class="c1"># 예외처리</span>
+    <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"컬러 영상 아님"</span><span class="p">)</span> <span class="c1"># 예외 처리 - 컬러 영상 확인</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="c1"># blue, green, red = cv2.split(image)  ## 3개 변수로 반환받기 가능!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'bgr 자료형:'</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">bgr</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">bgr</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">type</span><span class="p">(</span><span class="n">bgr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>bgr 자료형: &lt;class 'tuple'&gt; &lt;class 'numpy.ndarray'&gt; &lt;class 'numpy.uint8'&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## 각 채널을 윈도우에 띄우기</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'image'</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'Blue chnnel'</span><span class="p">,</span> <span class="n">bgr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'Green chnnel'</span><span class="p">,</span> <span class="n">bgr</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'Red chnnel'</span><span class="p">,</span> <span class="n">bgr</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>original image vs. Blue channel</center>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/blue.png" alt="" style="max-width: 700px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Blue Channel 아래쪽 파란색 마크 부분이 Blue channel에서는 밝게 나타난다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>original image vs. Green channel</center>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/green.png" alt="" style="max-width: 700px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>원본이미지 아래쪽에 녹색을 띄는 진열대 부분이 Green Channel에서 밝게 나타난다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>original image vs. red channel</center>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/red.png" alt="" style="max-width: 700px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>원본이미지의 왼쪽 냉장 전시물의 붉은쪽 문 부분이 Red Chnnel에서 밝게 나타난다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.3.0-산술-연산-함수">
+<a class="anchor" href="#5.3.0-%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0-%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3.0 산술 연산 함수<a class="anchor-link" href="#5.3.0-%EC%82%B0%EC%88%A0-%EC%97%B0%EC%82%B0-%ED%95%A8%EC%88%98"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>행렬연산은 주로 첫 번째 배열의 i번째 원소와 두 번째 배열의 i번째 원소 간에 연산을 수행해서 결과 배열의 i번째 원소에 저장하는 방식을 취한다. 이러한 방식을 원소간 <strong>(per-element, element-wise)</strong> 연산이라 한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.3.1-사칙연산">
+<a class="anchor" href="#5.3.1-%EC%82%AC%EC%B9%99%EC%97%B0%EC%82%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3.1 사칙연산<a class="anchor-link" href="#5.3.1-%EC%82%AC%EC%B9%99%EC%97%B0%EC%82%B0"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OpenCV에서 배열에 대한 사칙 연산은 두 배열의 원소간(per-element) 연산을 수행한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="5.3.2-지수,-로그,-제곱근-관련-함수">
+<a class="anchor" href="#5.3.2-%EC%A7%80%EC%88%98,-%EB%A1%9C%EA%B7%B8,-%EC%A0%9C%EA%B3%B1%EA%B7%BC-%EA%B4%80%EB%A0%A8-%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3.2 지수, 로그, 제곱근 관련 함수<a class="anchor-link" href="#5.3.2-%EC%A7%80%EC%88%98,-%EB%A1%9C%EA%B7%B8,-%EC%A0%9C%EA%B3%B1%EA%B7%BC-%EA%B4%80%EB%A0%A8-%ED%95%A8%EC%88%98"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OpenCV는 배열 원소의 지수와 로그 및 제곱근 관련 함수를 지원한다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkocto/BP2022"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/BP2022/python/2022/10/13/operatios_func.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/BP2022/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/BP2022/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/BP2022/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/pinkocto" target="_blank" title="pinkocto"><svg class="svg-icon grey"><use xlink:href="/BP2022/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
