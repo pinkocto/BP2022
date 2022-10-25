@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "(221025) MNIST",
-            "content": "",
+            "content": "- CNN의 기본 이해 - CNN을 실습을 통해 알아보기 . from IPython.display import display, Image import os, warnings warnings.filterwarnings(action=&#39;ignore&#39;) . import tensorflow as tf from tensorflow.keras import models from tensorflow.keras import layers print(tf.__version__) . 2.10.0 .",
             "url": "https://pinkocto.github.io/BP2022/python/2022/10/25/DNN.html",
             "relUrl": "/python/2022/10/25/DNN.html",
             "date": " • Oct 25, 2022"
