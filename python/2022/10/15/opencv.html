@@ -128,6 +128,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#6.2.1-그레이-스케일-(명암도)-영상">6.2.1 그레이 스케일 (명암도) 영상 </a></li>
 <li class="toc-entry toc-h3"><a href="#6.2.2-영상의-화소-표현">6.2.2 영상의 화소 표현 </a></li>
 <li class="toc-entry toc-h3"><a href="#6.2.3-영상-밝기의-가감영상">6.2.3 영상 밝기의 가감영상 </a></li>
+<li class="toc-entry toc-h3"><a href="#6.2.4-행렬-덧셈-및-곱셈을-이용한-영상-합성">6.2.4 행렬 덧셈 및 곱셈을 이용한 영상 합성 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -1069,6 +1070,81 @@ window.onload = wrap_img;
 <li>예를 들어 영상의 화소에 특정한 상숫값을 더하면 영상이 밝아지고, 상숫값을 빼면 영상이 어두워진다.</li>
 <li>또한, 화소가 가질 수 있는 최댓값(예로 255)에서 그 화소의 값을 빼면 반전 영상이 만들어진다.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6.2.4-행렬-덧셈-및-곱셈을-이용한-영상-합성">
+<a class="anchor" href="#6.2.4-%ED%96%89%EB%A0%AC-%EB%8D%A7%EC%85%88-%EB%B0%8F-%EA%B3%B1%EC%85%88%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%81%EC%83%81-%ED%95%A9%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2.4 행렬 덧셈 및 곱셈을 이용한 영상 합성<a class="anchor-link" href="#6.2.4-%ED%96%89%EB%A0%AC-%EB%8D%A7%EC%85%88-%EB%B0%8F-%EA%B3%B1%EC%85%88%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%98%81%EC%83%81-%ED%95%A9%EC%84%B1"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>영상에 상수를 더하거나 빼는 연산을 확장하면 두 개의 영상을 더하거나 빼는 연산을 생각해 볼 수 있다. 두 영상을 합하면 영상 합성이 되며, 두 영상을 빼면 차영상(difference image)이 된다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>다음은 알렉산더 대왕 동상 영상($A$)과 사도의 건물 영상($B$), 두 영상을 합성한 영상($A+B$)을 구하는 예제이다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="alert-danger">
+<br>
+🤔 문제발생
+
+✔ 두 개의 행렬을 합하게 되면, saturation 연산으로 인해 255가 넘어가는 화소들은 흰색으로 나타나서 영상의 합성이 제대로 수행되지 않는다.
+
+✔ 참고로 행렬의 덧셈과 뺄셈에서 OpenCV는 saturation 방식을 사용하고, numpy는 modulo 방식을 사용한다.<br><br>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 해결방법</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1) $dst(y,x) = image1(y,x)*0.5 + image2(y,x)*0.5$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>$dst(y,x) = image1(y,x)*\alpha + image2(y,x)*(1-\alpha)$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>$dst(y,x) = image1(y,x)*\alpha + image2(y,x)*\beta$</li>
+</ol>
 
 </div>
 </div>
