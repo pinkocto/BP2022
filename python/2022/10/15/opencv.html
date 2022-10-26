@@ -1099,58 +1099,47 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="alert-danger"> <br>
+    <center>🤔 문제발생</center>&lt;/p&gt;
+<ul>
+<li>
+<p>두 개의 행렬을 합하게 되면, saturation 연산으로 인해 255가 넘어가는 화소들은 흰색으로 나타나서 영상의 합성이 제대로 수행되지 않는다. <br><br></p>
+</li>
+<li>
+<p>참고로 행렬의 덧셈과 뺄셈에서 OpenCV는 saturation 방식을 사용하고, numpy는 modulo 방식을 사용한다.<br><br></p>
+<div>&lt;/li&gt;
+&lt;/ul&gt;
+
+</div>
+&lt;/div&gt;
+&lt;/div&gt;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert-danger">
-<br>
-🤔 문제발생
+<div class="alert-success"> <br>
+    <center>😎 해결방법</center>
 
-✔ 두 개의 행렬을 합하게 되면, saturation 연산으로 인해 255가 넘어가는 화소들은 흰색으로 나타나서 영상의 합성이 제대로 수행되지 않는다.
+1. $dst(y,x) = image1(y,x)*0.5 + image2(y,x)*0.5$ <br><br>
 
-✔ 참고로 행렬의 덧셈과 뺄셈에서 OpenCV는 saturation 방식을 사용하고, numpy는 modulo 방식을 사용한다.<br><br>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> 해결방법</p>
+2. $dst(y,x) = image1(y,x)*\alpha + image2(y,x)*(1-\alpha)$ <br><br>
 
+3. $dst(y,x) = image1(y,x)*\alpha + image2(y,x)*\beta$ <br><br>
+    </div>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>1) $dst(y,x) = image1(y,x)*0.5 + image2(y,x)*0.5$</p>
+&lt;/div&gt;
+ 
 
+</li>
+</ul>
 </div>
 </div>
+</div></div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>$dst(y,x) = image1(y,x)*\alpha + image2(y,x)*(1-\alpha)$</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>$dst(y,x) = image1(y,x)*\alpha + image2(y,x)*\beta$</li>
-</ol>
-
-</div>
-</div>
-</div>
-</div>
-
 
 
   </div><!-- from https://github.com/utterance/utterances -->
