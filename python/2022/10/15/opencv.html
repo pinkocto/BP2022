@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      5 min read
     
 </span></p>
 
@@ -126,6 +126,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#6.2-화소-밝기-변환">6.2 화소 밝기 변환 </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#6.2.1-그레이-스케일-(명암도)-영상">6.2.1 그레이 스케일 (명암도) 영상 </a></li>
+<li class="toc-entry toc-h3"><a href="#6.2.2-영상의-화소-표현">6.2.2 영상의 화소 표현 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -763,6 +764,9 @@ window.onload = wrap_img;
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
@@ -781,9 +785,18 @@ window.onload = wrap_img;
 </div>
 </div>
 
+    </details>
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 실행결과</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -808,8 +821,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>나눗셈 몫 연산자로 2로 나눈 몫을 저장하는 것은 가로 인덱스의 절반 값으로 j열 원소의 화소값을 설정한 것이다.
-따라서 화소값은 왼쪽에서 오른쪽으로 0에서 255의 값까지 <strong>점진적으로 증가</strong>한다.</p>
+<ul>
+<li>나눗셈 몫 연산자로 2로 나눈 몫을 저장하는 것은 가로 인덱스의 절반 값으로 j열 원소의 화소값을 설정한 것이다.
+따라서 화소값은 왼쪽에서 오른쪽으로 0에서 255의 값까지 <strong>점진적으로 증가</strong>한다.</li>
+</ul>
 
 </div>
 </div>
@@ -832,7 +847,92 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(j // 20 * 10) 은 몫 연산자로 인해서 계산 값의 소수 부분은 날라간다. 따라서 20화소씩 ㅣ같은 값을 갖게 되어 <strong>계단 현상</strong>을 나타내며 <strong>증가한다.</strong></p>
+<ul>
+<li>(j // 20 * 10) 은 몫 연산자로 인해서 계산 값의 소수 부분은 날라간다. 따라서 20화소씩 ㅣ같은 값을 갖게 되어 <strong>계단 현상</strong>을 나타내며 <strong>증가한다.</strong>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6.2.2-영상의-화소-표현">
+<a class="anchor" href="#6.2.2-%EC%98%81%EC%83%81%EC%9D%98-%ED%99%94%EC%86%8C-%ED%91%9C%ED%98%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2.2 영상의 화소 표현<a class="anchor-link" href="#6.2.2-%EC%98%81%EC%83%81%EC%9D%98-%ED%99%94%EC%86%8C-%ED%91%9C%ED%98%84"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>영상파일을 읽어 들여 그 영상의 특정 부분의 화소들을 확인해보자. 영상파일을 행렬에 저장하고, 관심 영역을 지정해서 출력하면 간단히 영상 데이터인 화소들의 값을 출력할 수 있다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 영상 화소값 확인 (pixel_value)</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'./ghtop_images/chap06_images/pixel.jpg'</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">37</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">roi_img</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[roi img] =</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">roi_img</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Output" data-close="Show Output"></summary>
+        <p>
+</p>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[roi img] =
+ [[ 56  51  59  66  84 104 154 206 220 208 203 207 205 204 204]
+ [ 75  57  53  53  72  71 100 152 195 214 212 201 209 207 205]
+ [ 88  76  65  53  51  60  73  96 143 200 219 200 206 204 202]
+ [ 91  92  80  63  53  59  59  61  89 144 195 222 205 200 205]
+ [ 89  94  90  82  63  54  51  56  65  92 149 203 223 209 196]
+ [ 89  91  90  89  84  64  54  55  51  56  94 140 208 223 203]
+ [ 91  86  84  85  97  86  72  59  50  53  66  81 148 211 216]
+ [ 92  86  85  88  92  95  88  70  55  53  59  64  89 155 211]
+ [ 88  85  86  90  87  87  89  86  72  56  50  53  59  88 175]
+ [ 87  85  86  88  87  84  86  90  86  70  53  44  51  56 111]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$(x, y)$는 사각형의 시작좌표</li>
+<li>$(w, h)$는 사각형의 크기</li>
+<li>즉, 사각형의 시작좌표와 크기로 <strong>관심영역을 지정</strong>한다.</li>
+</ul>
 
 </div>
 </div>
