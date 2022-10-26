@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      7 min read
     
 </span></p>
 
@@ -127,6 +127,7 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h3"><a href="#6.2.1-그레이-스케일-(명암도)-영상">6.2.1 그레이 스케일 (명암도) 영상 </a></li>
 <li class="toc-entry toc-h3"><a href="#6.2.2-영상의-화소-표현">6.2.2 영상의 화소 표현 </a></li>
+<li class="toc-entry toc-h3"><a href="#6.2.3-영상-밝기의-가감영상">6.2.3 영상 밝기의 가감영상 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -885,18 +886,126 @@ window.onload = wrap_img;
 <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">'./ghtop_images/chap06_images/pixel.jpg'</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
 
 <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">37</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">roi_img</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>
+<span class="n">roi_img</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">]</span>   <span class="c1"># 행은 시작 y좌표에서 y+h까지, 열은 시작 x좌표에서 x+w까지</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"[roi img] =</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">roi_img</span><span class="p">)</span>
+<span class="c1">#print("[roi img] =\n", roi_img)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-<details class="description">
-      <summary class="btn btn-sm" data-open="Hide Output" data-close="Show Output"></summary>
-        <p>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$(x, y)$는 사각형의 시작좌표</li>
+<li>$(w, h)$는 사각형의 크기</li>
+<li>즉, 사각형의 시작좌표와 크기로 <strong>관심영역을 지정</strong>한다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"[roi_img] ="</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">roi_img</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">%4d</span><span class="s2">"</span> <span class="o">%</span> <span class="n">p</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[roi_img] =
+  56  51  59  66  84 104 154 206 220 208 203 207 205 204 204  75  57  53  53  72  71 100 152 195 214 212 201 209 207 205  88  76  65  53  51  60  73  96 143 200 219 200 206 204 202  91  92  80  63  53  59  59  61  89 144 195 222 205 200 205  89  94  90  82  63  54  51  56  65  92 149 203 223 209 196  89  91  90  89  84  64  54  55  51  56  94 140 208 223 203  91  86  84  85  97  86  72  59  50  53  66  81 148 211 216  92  86  85  88  92  95  88  70  55  53  59  64  89 155 211  88  85  86  90  87  87  89  86  72  56  50  53  59  88 175  87  85  86  88  87  84  86  90  86  70  53  44  51  56 111
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span> <span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>     <span class="c1"># 관심 영역에 사각형 표시</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">"image"</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">'./prac_image/image_227.png'</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span> <span class="c1"># 이미지 저장</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/image_227.png" alt="">
+    
+    
+</figure>
 </p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>실행 결과를 보면, 영상의 우상단에 흰색의 작은 사각형이 그려져 있다. 이 사각형이 관심 영역이며, 이 영역의 화소값과 비교해보자.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"[roi img] =</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">roi_img</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -921,7 +1030,6 @@ window.onload = wrap_img;
 </div>
 </div>
 
-    </details>
 </div>
     
 
@@ -929,9 +1037,37 @@ window.onload = wrap_img;
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>$(x, y)$는 사각형의 시작좌표</li>
-<li>$(w, h)$는 사각형의 크기</li>
-<li>즉, 사각형의 시작좌표와 크기로 <strong>관심영역을 지정</strong>한다.</li>
+<li>관심영역 즉, 흰색 사각형이 그려져 있는 부분을 보면 주대각선 윗 부분은 흰색(밝은색)이고 아랫부분은 진한회색(어두운색)임을 알 수 있다.</li>
+<li>화소 값을 보면 주대각선 기준 윗부분은 화소값은 대략 $200\sim225$범위의 값을 나타내고, 그 아래부분은 대략 $50\sim80$범위의 값임을 확인</li>
+<li>즉, 흰색부분은 화소값이 255와 가깝고, 어두운 부분은 0에 가까운 값을 갖는다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="6.2.3-영상-밝기의-가감영상">
+<a class="anchor" href="#6.2.3-%EC%98%81%EC%83%81-%EB%B0%9D%EA%B8%B0%EC%9D%98-%EA%B0%80%EA%B0%90%EC%98%81%EC%83%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2.3 영상 밝기의 가감영상<a class="anchor-link" href="#6.2.3-%EC%98%81%EC%83%81-%EB%B0%9D%EA%B8%B0%EC%9D%98-%EA%B0%80%EA%B0%90%EC%98%81%EC%83%81"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>화소값이 영상의 밝기를 나타내기 때문에 이 화소값을 변경하면 영상의 밝기를 바꿀 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>예를 들어 영상의 화소에 특정한 상숫값을 더하면 영상이 밝아지고, 상숫값을 빼면 영상이 어두워진다.</li>
+<li>또한, 화소가 가질 수 있는 최댓값(예로 255)에서 그 화소의 값을 빼면 반전 영상이 만들어진다.</li>
 </ul>
 
 </div>
