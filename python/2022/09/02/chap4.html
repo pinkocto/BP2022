@@ -151,6 +151,78 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>             <span class="c1"># 행렬 생성</span>
+<span class="n">image</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">200</span>                                     <span class="c1"># 밝은 회색(200) 바탕 영상 생성</span>
+
+<span class="n">title1</span><span class="p">,</span> <span class="n">title2</span> <span class="o">=</span> <span class="s1">'Position1'</span><span class="p">,</span> <span class="s1">'Position2'</span>          <span class="c1"># 윈도우 이름</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>       <span class="c1"># 윈도우 생성 및 크기조절 옵션</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[200, 200, 200, ..., 200, 200, 200],
+       [200, 200, 200, ..., 200, 200, 200],
+       [200, 200, 200, ..., 200, 200, 200],
+       ...,
+       [200, 200, 200, ..., 200, 200, 200],
+       [200, 200, 200, ..., 200, 200, 200],
+       [200, 200, 200, ..., 200, 200, 200]], dtype=uint8)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
 </div>
 
 
