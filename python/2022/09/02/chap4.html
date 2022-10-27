@@ -236,56 +236,21 @@ window.onload = wrap_img;
 <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>        <span class="c1"># ndarray 행렬 생성</span>
 <span class="n">image</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>                              <span class="c1"># 모든 원소에 255(흰색) 지정</span>
 <span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(array([[255, 255, 255, ..., 255, 255, 255],
-        [255, 255, 255, ..., 255, 255, 255],
-        [255, 255, 255, ..., 255, 255, 255],
-        ...,
-        [255, 255, 255, ..., 255, 255, 255],
-        [255, 255, 255, ..., 255, 255, 255],
-        [255, 255, 255, ..., 255, 255, 255]], dtype=uint8),
- (200, 300))</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">title1</span><span class="p">,</span> <span class="n">title2</span> <span class="o">=</span> <span class="s1">'AUTOSIZE'</span><span class="p">,</span> <span class="s1">'NORMAL'</span>
+<span class="n">title1</span><span class="p">,</span> <span class="n">title2</span> <span class="o">=</span> <span class="s1">'AUTOSIZE'</span><span class="p">,</span> <span class="s1">'NORMAL'</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>              <span class="c1"># 윈도우 이동 - 위치 지정</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>               
 
-<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'image'</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>                    <span class="c1"># 원본 이미지</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>                     <span class="c1"># AUTOSIZE</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>                     <span class="c1"># NORMAL</span>
 
 <span class="n">cv2</span><span class="o">.</span><span class="n">resizeWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>             <span class="c1"># 윈도우 크기 변경</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">resizeWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                  <span class="c1"># 키 이벤트 대기</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>                         <span class="c1"># 열린 모든 윈도우 닫기</span>
 </pre></div>
 
     </div>
@@ -295,6 +260,18 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<code>cv2.WINDOW_AUTOSIZE</code>로 옵션을 준 후 윈도우 크기를 조절하려 하면 변경되지 않는다. 오토사이즈는 자동 크기이기 때문에!</li>
+<li>반면 <code>cv2.WINDOW_NORMAL</code>의 경우 윈도우 크기 조절이 잘 된다.</li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
 
 
