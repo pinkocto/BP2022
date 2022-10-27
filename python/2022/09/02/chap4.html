@@ -240,8 +240,8 @@ window.onload = wrap_img;
 <span class="n">title1</span><span class="p">,</span> <span class="n">title2</span> <span class="o">=</span> <span class="s1">'AUTOSIZE'</span><span class="p">,</span> <span class="s1">'NORMAL'</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">)</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_NORMAL</span><span class="p">)</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>              <span class="c1"># 윈도우 이동 - 위치 지정</span>
-<span class="n">cv2</span><span class="o">.</span><span class="n">moveWindow</span><span class="p">(</span><span class="n">title2</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>               
+<span class="c1"># cv2.moveWindow(title1, 150, 150)              # 윈도우 이동 - 위치 지정</span>
+<span class="c1"># cv2.moveWindow(title2, 400, 50)               </span>
 
 <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'image'</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>                    <span class="c1"># 원본 이미지</span>
 <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title1</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>                     <span class="c1"># AUTOSIZE</span>
@@ -264,9 +264,9 @@ window.onload = wrap_img;
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>
-<code>cv2.WINDOW_AUTOSIZE</code>로 옵션을 준 후 윈도우 크기를 조절하려 하면 변경되지 않는다. 오토사이즈는 자동 크기이기 때문에!</li>
-<li>반면 <code>cv2.WINDOW_NORMAL</code>의 경우 윈도우 크기 조절이 잘 된다.</li>
+<li>실행결과, 행렬을 두 윈도우에 영상을 표시한 후에 cv2.resizeWindow() 영상의 크기를 가로 400화소, 세로 300화소로 변경한다. 여기서 두 윈도우에 나타나는 영상(image 행렬)의 형태가 다르다.</li>
+<li>즉, AUTOSIZE 윈도우는 행렬의 크기 변경 없이 윈도우의 크기만 바꾸며,</li>
+<li>NORMAL 윈도우는 변경된 윈도우와 동일하게 행렬의 크기도 바뀐다. 단, image 행렬의 실제 크기를 바꾼</li>
 </ul>
 
 </div>
