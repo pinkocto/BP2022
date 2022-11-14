@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      13 min read
+      16 min read
     
 </span></p>
 
@@ -146,6 +146,16 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h3"><a href="#8-파생변수-만들기">8 파생변수 만들기 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#모델-생성-및-검증">모델 생성 및 검증 </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#학습-데이터와-테스트-데이터-분리">학습 데이터와 테스트 데이터 분리 </a></li>
+<li class="toc-entry toc-h2"><a href="#모델링">모델링 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#선형회귀-(Linear-Regression)">선형회귀 (Linear Regression) </a></li>
 </ul>
 </li>
 </ul>
@@ -3630,6 +3640,900 @@ Name: am, dtype: object
 </div>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>두 번째로 만들 파생변수는 qsec 열(1/4mile 도달 시간) 값을 기반으로 만들 qsec_4(1mile도달 시간을 의미)입니다. 이는 qsec 열 단위를 1/4mile 단위에서 1mile 단위로 변환하기 위해서 생성하는 변수입니다. 즉, 현재 qsec 열 값을 4배 하여 1mile 당 도달 시간을 의미하는 qsec_4 변수를 생성합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s1">'qsec_4'</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">'qsec'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+
+<span class="n">X</span><span class="p">[[</span><span class="s1">'qsec'</span><span class="p">,</span><span class="s1">'qsec_4'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>qsec</th>
+      <th>qsec_4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.46</td>
+      <td>65.84</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>17.02</td>
+      <td>68.08</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18.61</td>
+      <td>74.44</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.10</td>
+      <td>0.40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>17.02</td>
+      <td>68.08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'qsec'</span><span class="p">])</span>
+
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cyl</th>
+      <th>disp</th>
+      <th>hp</th>
+      <th>drat</th>
+      <th>vs</th>
+      <th>gear</th>
+      <th>carb</th>
+      <th>am_new</th>
+      <th>wt_class</th>
+      <th>qsec_4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6.0</td>
+      <td>160.0</td>
+      <td>110.0</td>
+      <td>3.90</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>65.84</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6.0</td>
+      <td>160.0</td>
+      <td>110.0</td>
+      <td>3.90</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>68.08</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.0</td>
+      <td>108.0</td>
+      <td>93.0</td>
+      <td>3.85</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>74.44</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.0</td>
+      <td>258.0</td>
+      <td>110.0</td>
+      <td>3.08</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.0</td>
+      <td>360.0</td>
+      <td>175.0</td>
+      <td>3.15</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>68.08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="모델-생성-및-검증">
+<a class="anchor" href="#%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EA%B2%80%EC%A6%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>모델 생성 및 검증<a class="anchor-link" href="#%EB%AA%A8%EB%8D%B8-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EA%B2%80%EC%A6%9D"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="학습-데이터와-테스트-데이터-분리">
+<a class="anchor" href="#%ED%95%99%EC%8A%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>학습 데이터와 테스트 데이터 분리<a class="anchor-link" href="#%ED%95%99%EC%8A%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EB%A6%AC"> </a>
+</h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(22, 10) (10, 10)
+(22,) (10,)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cyl</th>
+      <th>disp</th>
+      <th>hp</th>
+      <th>drat</th>
+      <th>vs</th>
+      <th>gear</th>
+      <th>carb</th>
+      <th>am_new</th>
+      <th>wt_class</th>
+      <th>qsec_4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>4.0</td>
+      <td>71.1</td>
+      <td>65.0</td>
+      <td>4.22</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>79.60</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14.0</td>
+      <td>472.0</td>
+      <td>205.0</td>
+      <td>2.93</td>
+      <td>0</td>
+      <td>3</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>71.92</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>4.0</td>
+      <td>75.7</td>
+      <td>52.0</td>
+      <td>4.93</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>74.08</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>8.0</td>
+      <td>360.0</td>
+      <td>245.0</td>
+      <td>3.21</td>
+      <td>0</td>
+      <td>3</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>63.36</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>8.0</td>
+      <td>275.8</td>
+      <td>180.0</td>
+      <td>3.07</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>69.60</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>19    33.9
+14    10.4
+18    30.4
+6     14.3
+11    16.4
+Name: mpg, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cyl</th>
+      <th>disp</th>
+      <th>hp</th>
+      <th>drat</th>
+      <th>vs</th>
+      <th>gear</th>
+      <th>carb</th>
+      <th>am_new</th>
+      <th>wt_class</th>
+      <th>qsec_4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20</th>
+      <td>4.0</td>
+      <td>120.1</td>
+      <td>97.0</td>
+      <td>3.70</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>80.04</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7.6</td>
+      <td>146.7</td>
+      <td>62.0</td>
+      <td>3.69</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>80.00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6.0</td>
+      <td>225.0</td>
+      <td>105.0</td>
+      <td>2.76</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>80.88</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.0</td>
+      <td>108.0</td>
+      <td>93.0</td>
+      <td>3.85</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>74.44</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.0</td>
+      <td>258.0</td>
+      <td>110.0</td>
+      <td>3.08</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.40</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>20    21.5
+7     24.4
+5     18.1
+2     22.8
+3     21.4
+Name: mpg, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="모델링">
+<a class="anchor" href="#%EB%AA%A8%EB%8D%B8%EB%A7%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>모델링<a class="anchor-link" href="#%EB%AA%A8%EB%8D%B8%EB%A7%81"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="선형회귀-(Linear-Regression)">
+<a class="anchor" href="#%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80-(Linear-Regression)" aria-hidden="true"><span class="octicon octicon-link"></span></a>선형회귀 (Linear Regression)<a class="anchor-link" href="#%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80-(Linear-Regression)"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># 선형회귀 분석을 수행할 기본적인 모델(model) 만들기</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># 생성한 모델에 X_train, y_train을 전달해서 선형회귀 방법으로 학습</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># 학습 완료된 모델에 x_train을 전달하여 y_trian 값 예측</span>
+<span class="n">y_train_predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="c1"># 학습 완료된 모델에 X_test을 전달하여 y_test 값 예측</span>
+<span class="n">y_test_predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>24.26181219199409
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-0.13817819 -0.01231325 -0.00409076  0.96656685  1.12173056  0.65741573
+ -1.9744834  -3.58098353  0.02124373  0.02402967]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9063023662021511
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.10162785154970966
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>결과로 학습데이터의 결정계수는 0.9로 매우 높게나타났지만 테스트 셋의 결정계수가 0.1로 매우 낮게 나왔다. (<strong>과대적합</strong>)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+
+<span class="c1"># MAE를 계산하는 mean_absolute_error 함수</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+
+<span class="c1"># MSE를 계산하는 mean_squared_error 함수</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="c1"># 제곱근 계산을 위하여 numpy 라이브러리 </span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'r2_score_train: '</span><span class="p">,</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_predicted</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'r2_score_test: '</span><span class="p">,</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_predicted</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'MSE_test: '</span><span class="p">,</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_predicted</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'RMSE_test: '</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_predicted</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'MAE_test: '</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_predicted</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>r2_score_train:  0.9063023662021511
+r2_score_test:  0.10162785154970966
+MSE_test:  8.924428922705184
+RMSE_test:  2.987378269102389
+MAE_test:  2.3752487909100055
+</pre>
+</div>
 </div>
 
 </div>
