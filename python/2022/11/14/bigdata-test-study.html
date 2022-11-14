@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      12 min read
+      13 min read
     
 </span></p>
 
@@ -140,9 +140,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#7-문자로-구성된-범주형-데이터를-숫자형으로-변경">7 문자로 구성된 범주형 데이터를 숫자형으로 변경 </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#범주형을-수치형으로-변경-:-인코딩(Encoding)">범주형을 수치형으로 변경 : 인코딩(Encoding) </a></li>
+<li class="toc-entry toc-h4"><a href="#--원-핫-인코딩">- 원-핫 인코딩 </a></li>
+<li class="toc-entry toc-h4"><a href="#--라벨인코딩">- 라벨인코딩 </a></li>
+<li class="toc-entry toc-h4"><a href="#--수동-인코딩-(Replace)">- 수동 인코딩 (Replace) </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#8-분석에-필요한-새로운-열-생성">8 분석에 필요한 새로운 열 생성 </a></li>
+<li class="toc-entry toc-h3"><a href="#8-파생변수-만들기">8 파생변수 만들기 </a></li>
 </ul>
 </li>
 </ul>
@@ -2796,6 +2799,15 @@ Name: gear, dtype: int64</pre>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--원-핫-인코딩">
+<a class="anchor" href="#--%EC%9B%90-%ED%95%AB-%EC%9D%B8%EC%BD%94%EB%94%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 원-핫 인코딩<a class="anchor-link" href="#--%EC%9B%90-%ED%95%AB-%EC%9D%B8%EC%BD%94%EB%94%A9"> </a>
+</h4>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -3133,6 +3145,15 @@ Name: gear, dtype: int64</pre>
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--라벨인코딩">
+<a class="anchor" href="#--%EB%9D%BC%EB%B2%A8%EC%9D%B8%EC%BD%94%EB%94%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 라벨인코딩<a class="anchor-link" href="#--%EB%9D%BC%EB%B2%A8%EC%9D%B8%EC%BD%94%EB%94%A9"> </a>
+</h4>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -3244,12 +3265,379 @@ Name: am, dtype: object
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="8-분석에-필요한-새로운-열-생성">
-<a class="anchor" href="#8-%EB%B6%84%EC%84%9D%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%97%B4-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>8</code> 분석에 필요한 새로운 열 생성<a class="anchor-link" href="#8-%EB%B6%84%EC%84%9D%EC%97%90-%ED%95%84%EC%9A%94%ED%95%9C-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%97%B4-%EC%83%9D%EC%84%B1"> </a>
+<h4 id="--수동-인코딩-(Replace)">
+<a class="anchor" href="#--%EC%88%98%EB%8F%99-%EC%9D%B8%EC%BD%94%EB%94%A9-(Replace)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 수동 인코딩 (Replace)<a class="anchor-link" href="#--%EC%88%98%EB%8F%99-%EC%9D%B8%EC%BD%94%EB%94%A9-(Replace)"> </a>
+</h4>
+<p>데이터 값의 종류가 많지 않은 경우는 replace() 함수를 사용해서 인코딩을 수행할 수 있습니다. 예를 들어 합격/불합격 값, 신청/미신청 값, 방문/미방문 등의 이진 데이터라면 수동으로 인코딩 하기 쉽습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s1">'am_new'</span><span class="p">]</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="s1">'am'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'manual'</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'auto'</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>   cyl   disp     hp  drat     wt   qsec  vs      am  gear  carb  am_new
+0  6.0  160.0  110.0  3.90  2.620  16.46   0  manual     4   4.0       0
+1  6.0  160.0  110.0  3.90  2.875  17.02   0  manual     4   4.0       0
+2  4.0  108.0   93.0  3.85  2.320  18.61   1  manual     4   1.0       0
+3  6.0  258.0  110.0  3.08  3.215   0.10   1    auto     3   1.0       1
+4  8.0  360.0  175.0  3.15  3.440  17.02   0    auto     3   2.0       1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'am'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>   cyl   disp     hp  drat     wt   qsec  vs  gear  carb  am_new
+0  6.0  160.0  110.0  3.90  2.620  16.46   0     4   4.0       0
+1  6.0  160.0  110.0  3.90  2.875  17.02   0     4   4.0       0
+2  4.0  108.0   93.0  3.85  2.320  18.61   1     4   1.0       0
+3  6.0  258.0  110.0  3.08  3.215   0.10   1     3   1.0       1
+4  8.0  360.0  175.0  3.15  3.440  17.02   0     3   2.0       1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="8-파생변수-만들기">
+<a class="anchor" href="#8-%ED%8C%8C%EC%83%9D%EB%B3%80%EC%88%98-%EB%A7%8C%EB%93%A4%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>8</code> 파생변수 만들기<a class="anchor-link" href="#8-%ED%8C%8C%EC%83%9D%EB%B3%80%EC%88%98-%EB%A7%8C%EB%93%A4%EA%B8%B0"> </a>
 </h3>
+<p>특정한 조건이나 함수에 의해서 새롭게 의미를 부여해서 만드는 변수입니다.</p>
+
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>첫 번째로 만들 파생변수는 무게를 의미하는 wt 열에 따라서 등급을 구분하는 wt_class(무게에 따른 구분)입니다. wt열의 평균값을 기준으로 무게의 등급을 나눌 것입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'wt'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.22</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">condition</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">'wt'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'wt'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 조건을 만족하면 0</span>
+<span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">condition</span><span class="p">,</span> <span class="s1">'wt_class'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># 조건을 만족하지 않으면 1</span>
+<span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">condition</span><span class="p">,</span> <span class="s1">'wt_class'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">[[</span><span class="s1">'wt'</span><span class="p">,</span> <span class="s1">'wt_class'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wt</th>
+      <th>wt_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.620</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.875</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.320</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.215</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.440</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'wt'</span><span class="p">])</span>
+
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cyl</th>
+      <th>disp</th>
+      <th>hp</th>
+      <th>drat</th>
+      <th>qsec</th>
+      <th>vs</th>
+      <th>gear</th>
+      <th>carb</th>
+      <th>am_new</th>
+      <th>wt_class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6.0</td>
+      <td>160.0</td>
+      <td>110.0</td>
+      <td>3.90</td>
+      <td>16.46</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6.0</td>
+      <td>160.0</td>
+      <td>110.0</td>
+      <td>3.90</td>
+      <td>17.02</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.0</td>
+      <td>108.0</td>
+      <td>93.0</td>
+      <td>3.85</td>
+      <td>18.61</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.0</td>
+      <td>258.0</td>
+      <td>110.0</td>
+      <td>3.08</td>
+      <td>0.10</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8.0</td>
+      <td>360.0</td>
+      <td>175.0</td>
+      <td>3.15</td>
+      <td>17.02</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
 </div>
 
 
