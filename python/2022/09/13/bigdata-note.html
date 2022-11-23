@@ -138,7 +138,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#--차원축소--/-연관분석">- 차원축소  / 연관분석 </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Practice">Practice </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Practice">Practice </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#01.-Logistic-Rgression">01. Logistic Rgression </a></li>
+<li class="toc-entry toc-h3"><a href="#특성공학">특성공학 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -156,6 +161,32 @@ window.onload = wrap_img;
 <h2 id="기계학습">
 <a class="anchor" href="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>기계학습<a class="anchor-link" href="#%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5"> </a>
 </h2>
+<ul>
+<li>학습 Train / 검증 Test $\to$ 평가</li>
+</ul>
+<ul>
+<li>특성공학 : 데이터 전처리<ul>
+<li>스케일링</li>
+<li>인코딩</li>
+<li>교차검증</li>
+<li>매개변수 튜닝</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>지도학습 ($Y$)<ul>
+<li>분류 ($Y$: 범주형) : Logistic Regression</li>
+<li>회귀 ($Y$: 연속형)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>비지도 학습<ul>
+<li>군집 분석 : Clustering</li>
+</ul>
+</li>
+</ul>
+
 </div>
 </div>
 </div>
@@ -219,9 +250,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Practice">
+<h2 id="Practice">
 <a class="anchor" href="#Practice" aria-hidden="true"><span class="octicon octicon-link"></span></a>Practice<a class="anchor-link" href="#Practice"> </a>
-</h3>
+</h2>
 </div>
 </div>
 </div>
@@ -422,6 +453,15 @@ Name: diagnosis, Length: 569, dtype: object</pre>
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="01.-Logistic-Rgression">
+<a class="anchor" href="#01.-Logistic-Rgression" aria-hidden="true"><span class="octicon octicon-link"></span></a>01. Logistic Rgression<a class="anchor-link" href="#01.-Logistic-Rgression"> </a>
+</h3>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -595,6 +635,200 @@ Name: diagnosis, Length: 569, dtype: object</pre>
    macro avg       0.85      0.85      0.85       171
 weighted avg       0.87      0.87      0.87       171
 
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>M과 B의 차이가 크지 않아야하고, 만약 차이가 크다면 모델을 다시 만들어야 한다.</li>
+<li>macro avg를 보고 모델이 얼마나 잘 생성되었는지 판단을 하면 된다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="특성공학">
+<a class="anchor" href="#%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>특성공학<a class="anchor-link" href="#%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'./data/Breast_Cancer/data1.csv'</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>diagnosis</th>
+      <th>radius_mean</th>
+      <th>texture_mean</th>
+      <th>perimeter_mean</th>
+      <th>area_mean</th>
+      <th>smoothness_mean</th>
+      <th>compactness_mean</th>
+      <th>concavity_mean</th>
+      <th>concave_points_mean</th>
+      <th>...</th>
+      <th>radius_worst</th>
+      <th>texture_worst</th>
+      <th>perimeter_worst</th>
+      <th>area_worst</th>
+      <th>smoothness_worst</th>
+      <th>compactness_worst</th>
+      <th>concavity_worst</th>
+      <th>concave_points_worst</th>
+      <th>symmetry_worst</th>
+      <th>fractal_dimension_worst</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>842302</td>
+      <td>M</td>
+      <td>17.99</td>
+      <td>10.38</td>
+      <td>122.8</td>
+      <td>1001.0</td>
+      <td>0.11840</td>
+      <td>0.27760</td>
+      <td>0.3001</td>
+      <td>0.14710</td>
+      <td>...</td>
+      <td>25.38</td>
+      <td>17.33</td>
+      <td>184.6</td>
+      <td>2019.0</td>
+      <td>0.1622</td>
+      <td>0.6656</td>
+      <td>0.7119</td>
+      <td>0.2654</td>
+      <td>0.4601</td>
+      <td>0.11890</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>842517</td>
+      <td>M</td>
+      <td>20.57</td>
+      <td>17.77</td>
+      <td>132.9</td>
+      <td>1326.0</td>
+      <td>0.08474</td>
+      <td>0.07864</td>
+      <td>0.0869</td>
+      <td>0.07017</td>
+      <td>...</td>
+      <td>24.99</td>
+      <td>23.41</td>
+      <td>158.8</td>
+      <td>1956.0</td>
+      <td>0.1238</td>
+      <td>0.1866</td>
+      <td>0.2416</td>
+      <td>0.1860</td>
+      <td>0.2750</td>
+      <td>0.08902</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 32 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(569, 32)
 </pre>
 </div>
 </div>
