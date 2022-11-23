@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      5 min read
     
 </span></p>
 
@@ -143,7 +143,8 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Practice">Practice </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#01.-Logistic-Rgression">01. Logistic Rgression </a></li>
-<li class="toc-entry toc-h3"><a href="#특성공학">특성공학 </a></li>
+<li class="toc-entry toc-h3"><a href="#02.-특성공학">02. 특성공학 </a></li>
+<li class="toc-entry toc-h3"><a href="#스케일링">스케일링 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -659,8 +660,8 @@ weighted avg       0.87      0.87      0.87       171
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="특성공학">
-<a class="anchor" href="#%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>특성공학<a class="anchor-link" href="#%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99"> </a>
+<h3 id="02.-특성공학">
+<a class="anchor" href="#02.-%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>02. 특성공학<a class="anchor-link" href="#02.-%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99"> </a>
 </h3>
 </div>
 </div>
@@ -839,6 +840,129 @@ weighted avg       0.87      0.87      0.87       171
 </div>
     
 
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="c1"># 데이터 프레임 내 항목들을 확인</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Index(['id', 'diagnosis', 'radius_mean', 'texture_mean', 'perimeter_mean',
+       'area_mean', 'smoothness_mean', 'compactness_mean', 'concavity_mean',
+       'concave_points_mean', 'symmetry_mean', 'fractal_dimension_mean',
+       'radius_se', 'texture_se', 'perimeter_se', 'area_se', 'smoothness_se',
+       'compactness_se', 'concavity_se', 'concave_points_se', 'symmetry_se',
+       'fractal_dimension_se', 'radius_worst', 'texture_worst',
+       'perimeter_worst', 'area_worst', 'smoothness_worst',
+       'compactness_worst', 'concavity_worst', 'concave_points_worst',
+       'symmetry_worst', 'fractal_dimension_worst'],
+      dtype='object')
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">info</span><span class="p">())</span> <span class="c1"># 데이터의 요약을 확인</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 32 columns):
+ #   Column                   Non-Null Count  Dtype  
+---  ------                   --------------  -----  
+ 0   id                       569 non-null    int64  
+ 1   diagnosis                569 non-null    object 
+ 2   radius_mean              569 non-null    float64
+ 3   texture_mean             569 non-null    float64
+ 4   perimeter_mean           569 non-null    float64
+ 5   area_mean                569 non-null    float64
+ 6   smoothness_mean          569 non-null    float64
+ 7   compactness_mean         569 non-null    float64
+ 8   concavity_mean           569 non-null    float64
+ 9   concave_points_mean      569 non-null    float64
+ 10  symmetry_mean            569 non-null    float64
+ 11  fractal_dimension_mean   569 non-null    float64
+ 12  radius_se                569 non-null    float64
+ 13  texture_se               569 non-null    float64
+ 14  perimeter_se             569 non-null    float64
+ 15  area_se                  569 non-null    float64
+ 16  smoothness_se            569 non-null    float64
+ 17  compactness_se           569 non-null    float64
+ 18  concavity_se             569 non-null    float64
+ 19  concave_points_se        569 non-null    float64
+ 20  symmetry_se              569 non-null    float64
+ 21  fractal_dimension_se     569 non-null    float64
+ 22  radius_worst             569 non-null    float64
+ 23  texture_worst            569 non-null    float64
+ 24  perimeter_worst          569 non-null    float64
+ 25  area_worst               569 non-null    float64
+ 26  smoothness_worst         569 non-null    float64
+ 27  compactness_worst        569 non-null    float64
+ 28  concavity_worst          569 non-null    float64
+ 29  concave_points_worst     569 non-null    float64
+ 30  symmetry_worst           569 non-null    float64
+ 31  fractal_dimension_worst  569 non-null    float64
+dtypes: float64(30), int64(1), object(1)
+memory usage: 142.4+ KB
+None
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="스케일링">
+<a class="anchor" href="#%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>스케일링<a class="anchor-link" href="#%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81"> </a>
+</h3>
+<ul>
+<li>연속형 데이터 간 스케일을 맞추기 위해</li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
 
 
