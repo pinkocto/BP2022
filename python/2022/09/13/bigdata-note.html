@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      7 min read
+      6 min read
     
 </span></p>
 
@@ -116,13 +116,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#기계학습">기계학습 </a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#특성공학">특성공학 </a></li>
-<li class="toc-entry toc-h3"><a href="#지도-학습">지도 학습 </a></li>
-<li class="toc-entry toc-h3"><a href="#비지도-학습">비지도 학습 </a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h2"><a href="#기계학습">기계학습 </a></li>
 <li class="toc-entry toc-h2"><a href="#Practice">Practice </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#01.-Logistic-Rgression">01. Logistic Rgression </a></li>
@@ -151,28 +145,6 @@ window.onload = wrap_img;
 <ul>
 <li>학습 Train / 검증 Test $\to$ 평가</li>
 </ul>
-<ul>
-<li>특성공학 : 데이터 전처리<ul>
-<li>스케일링</li>
-<li>인코딩</li>
-<li>교차검증</li>
-<li>매개변수 튜닝</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>지도학습 ($Y$)<ul>
-<li>분류 ($Y$: 범주형) : Logistic Regression</li>
-<li>회귀 ($Y$: 연속형)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>비지도 학습<ul>
-<li>군집 분석 : Clustering</li>
-</ul>
-</li>
-</ul>
 
 </div>
 </div>
@@ -180,9 +152,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="특성공학">
-<a class="anchor" href="#%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>특성공학<a class="anchor-link" href="#%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99"> </a>
-</h3>
+<p><strong>특성공학</strong> : 데이터 전처리</p>
 <p><code>-</code> Scaling :  숫자 데이터의 스케일 조정 (Standard / MinMax / Robust)</p>
 <p><code>-</code> Encoding: 숫자 데이터를 문자로 변환 (Label / One hot)</p>
 <p><code>-</code> Cross Validation: 교차 검증을 통해, 여러개의 모델</p>
@@ -194,9 +164,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="지도-학습">
-<a class="anchor" href="#%EC%A7%80%EB%8F%84-%ED%95%99%EC%8A%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>지도 학습<a class="anchor-link" href="#%EC%A7%80%EB%8F%84-%ED%95%99%EC%8A%B5"> </a>
-</h3>
+<p><strong>지도 학습 ($Y$)</strong></p>
 <p><code>-</code> $Y$ 연속형 (숫자) : Regression 회귀 / 예측</p>
 <p><code>-</code> $Y$ 범주형 (문자) : Classification 분류</p>
 
@@ -206,16 +174,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="비지도-학습">
-<a class="anchor" href="#%EB%B9%84%EC%A7%80%EB%8F%84-%ED%95%99%EC%8A%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>비지도 학습<a class="anchor-link" href="#%EB%B9%84%EC%A7%80%EB%8F%84-%ED%95%99%EC%8A%B5"> </a>
-</h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>-</code> 군집분석</p>
+<p><strong>비지도 학습</strong></p>
+<p><code>-</code> 군집분석 (Clustering)</p>
 <p><code>-</code> 차원축소  / 연관분석</p>
 
 </div>
