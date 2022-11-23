@@ -117,14 +117,14 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
 <li class="toc-entry toc-h2"><a href="#기계학습">기계학습 </a></li>
-<li class="toc-entry toc-h2"><a href="#Practice">Practice </a>
+<li class="toc-entry toc-h2"><a href="#Load-Dataset">Load Dataset </a></li>
+<li class="toc-entry toc-h2"><a href="#01.-Logistic-Rgression">01. Logistic Rgression </a></li>
+<li class="toc-entry toc-h2"><a href="#02.-특성공학">02. 특성공학 </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#01.-Logistic-Rgression">01. Logistic Rgression </a></li>
-<li class="toc-entry toc-h3"><a href="#02.-특성공학">02. 특성공학 </a>
-<ul>
-<li class="toc-entry toc-h4"><a href="#스케일링">스케일링 </a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h3"><a href="#스케일링">스케일링 </a></li>
+<li class="toc-entry toc-h3"><a href="#MinMax-Scaling">MinMax Scaling </a></li>
+<li class="toc-entry toc-h3"><a href="#Robust-Scaling">Robust Scaling </a></li>
+<li class="toc-entry toc-h3"><a href="#Scaling-+-Modeling-(Pipeline)">Scaling + Modeling (Pipeline) </a></li>
 </ul>
 </li>
 </ul><!--
@@ -145,35 +145,14 @@ window.onload = wrap_img;
 <ul>
 <li>학습 Train / 검증 Test $\to$ 평가</li>
 </ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>특성공학</strong> : 데이터 전처리</p>
 <p><code>-</code> Scaling :  숫자 데이터의 스케일 조정 (Standard / MinMax / Robust)</p>
 <p><code>-</code> Encoding: 숫자 데이터를 문자로 변환 (Label / One hot)</p>
 <p><code>-</code> Cross Validation: 교차 검증을 통해, 여러개의 모델</p>
 <p><code>-</code> Model Hyperparameter Tunning: 알고리즘 내 구조를 Tunning</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>지도 학습 ($Y$)</strong></p>
 <p><code>-</code> $Y$ 연속형 (숫자) : Regression 회귀 / 예측</p>
 <p><code>-</code> $Y$ 범주형 (문자) : Classification 분류</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>비지도 학습</strong></p>
 <p><code>-</code> 군집분석 (Clustering)</p>
 <p><code>-</code> 차원축소  / 연관분석</p>
@@ -184,8 +163,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Practice">
-<a class="anchor" href="#Practice" aria-hidden="true"><span class="octicon octicon-link"></span></a>Practice<a class="anchor-link" href="#Practice"> </a>
+<h2 id="Load-Dataset">
+<a class="anchor" href="#Load-Dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load Dataset<a class="anchor-link" href="#Load-Dataset"> </a>
 </h2>
 </div>
 </div>
@@ -390,9 +369,9 @@ Name: diagnosis, Length: 569, dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="01.-Logistic-Rgression">
+<h2 id="01.-Logistic-Rgression">
 <a class="anchor" href="#01.-Logistic-Rgression" aria-hidden="true"><span class="octicon octicon-link"></span></a>01. Logistic Rgression<a class="anchor-link" href="#01.-Logistic-Rgression"> </a>
-</h3>
+</h2>
 </div>
 </div>
 </div>
@@ -593,9 +572,9 @@ weighted avg       0.87      0.87      0.87       171
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="02.-특성공학">
+<h2 id="02.-특성공학">
 <a class="anchor" href="#02.-%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>02. 특성공학<a class="anchor-link" href="#02.-%ED%8A%B9%EC%84%B1%EA%B3%B5%ED%95%99"> </a>
-</h3>
+</h2>
 </div>
 </div>
 </div>
@@ -886,9 +865,9 @@ None
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="스케일링">
+<h3 id="스케일링">
 <a class="anchor" href="#%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>스케일링<a class="anchor-link" href="#%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81"> </a>
-</h4>
+</h3>
 <ul>
 <li>연속형 데이터 간 스케일을 맞추기 위해</li>
 <li>Standard Scaler : 평균이 0, 표준편차 1</li>
@@ -1120,6 +1099,15 @@ max      28.110000      188.500000  2501.000000
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MinMax-Scaling">
+<a class="anchor" href="#MinMax-Scaling" aria-hidden="true"><span class="octicon octicon-link"></span></a>MinMax Scaling<a class="anchor-link" href="#MinMax-Scaling"> </a>
+</h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1372,6 +1360,15 @@ max      28.110000      188.500000  2501.000000
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Robust-Scaling">
+<a class="anchor" href="#Robust-Scaling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Robust Scaling<a class="anchor-link" href="#Robust-Scaling"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>예제2. data1.csv파일에서 Mean Area 값을 Robust Scaler를 이용하여, 스케일링을 실시하고, 최댓값과 중앙값을 계산하시오.</strong></p>
 
 </div>
@@ -1517,6 +1514,15 @@ max      28.110000      188.500000  2501.000000
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Scaling-+-Modeling-(Pipeline)">
+<a class="anchor" href="#Scaling-+-Modeling-(Pipeline)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scaling + Modeling (Pipeline)<a class="anchor-link" href="#Scaling-+-Modeling-(Pipeline)"> </a>
+</h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
