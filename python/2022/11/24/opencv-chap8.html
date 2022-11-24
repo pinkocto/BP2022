@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -399,8 +399,11 @@ $$ ratio X = \frac{dst_{width}}{org_{width}},\qquad ratio Y = \frac{dst_{height}
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>기하학 변환 수식이 행렬의 곱으로 표현 가능</p>
 <p><code>-</code> 회전</p>
+<p>$\begin{bmatrix}x' \\ y'\end{bmatrix} = \begin{bmatrix}cos\theta &amp; -sin\theta\\sin\theta &amp; cos\theta\end{bmatrix} \begin{bmatrix}x \\ y \end{bmatrix}$</p>
 <p><code>-</code> 평행이동</p>
+<p>$\begin{bmatrix}x' \\ y'\end{bmatrix} = \begin{bmatrix}x \\ y\end{bmatrix} \begin{bmatrix}t_x \\ t_y \end{bmatrix}$</p>
 <p><code>-</code> 크기변경</p>
+<p>$\begin{bmatrix}x' \\ y'\end{bmatrix} = \begin{bmatrix}\alpha &amp; 0\\ 0 &amp; \beta\end{bmatrix} \begin{bmatrix}x \\ y \end{bmatrix}$</p>
 
 </div>
 </div>
