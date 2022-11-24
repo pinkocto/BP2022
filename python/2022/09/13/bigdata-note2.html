@@ -124,7 +124,14 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#결측값-대치">결측값 대치 </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#1.-Numpy-방법-[-replace()-]">1. Numpy 방법 [ replace() ] </a></li>
-<li class="toc-entry toc-h4"><a href="#2.-pandas-[-fillna()-]">2. pandas [ fillna() ] </a></li>
+<li class="toc-entry toc-h4"><a href="#2.-pandas-[-fillna()-]">2. pandas [ fillna() ] </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#평균값으로-변환">평균값으로 변환 </a></li>
+<li class="toc-entry toc-h5"><a href="#중앙값으로-변환">중앙값으로 변환 </a></li>
+<li class="toc-entry toc-h5"><a href="#위의-행의-값으로-대치">위의 행의 값으로 대치 </a></li>
+<li class="toc-entry toc-h5"><a href="#아래의-행으로-대치">아래의 행으로 대치 </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -542,6 +549,15 @@ dtype: int64
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="평균값으로-변환">
+<a class="anchor" href="#%ED%8F%89%EA%B7%A0%EA%B0%92%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>평균값으로 변환<a class="anchor-link" href="#%ED%8F%89%EA%B7%A0%EA%B0%92%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98"> </a>
+</h5>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -574,6 +590,15 @@ dtype: int64
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="중앙값으로-변환">
+<a class="anchor" href="#%EC%A4%91%EC%95%99%EA%B0%92%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>중앙값으로 변환<a class="anchor-link" href="#%EC%A4%91%EC%95%99%EA%B0%92%EC%9C%BC%EB%A1%9C-%EB%B3%80%ED%99%98"> </a>
+</h5>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -606,6 +631,15 @@ dtype: int64
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="위의-행의-값으로-대치">
+<a class="anchor" href="#%EC%9C%84%EC%9D%98-%ED%96%89%EC%9D%98-%EA%B0%92%EC%9C%BC%EB%A1%9C-%EB%8C%80%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>위의 행의 값으로 대치<a class="anchor-link" href="#%EC%9C%84%EC%9D%98-%ED%96%89%EC%9D%98-%EA%B0%92%EC%9C%BC%EB%A1%9C-%EB%8C%80%EC%B9%98"> </a>
+</h5>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -700,6 +734,15 @@ Name: age(pad), dtype: float64
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="아래의-행으로-대치">
+<a class="anchor" href="#%EC%95%84%EB%9E%98%EC%9D%98-%ED%96%89%EC%9C%BC%EB%A1%9C-%EB%8C%80%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>아래의 행으로 대치<a class="anchor-link" href="#%EC%95%84%EB%9E%98%EC%9D%98-%ED%96%89%EC%9C%BC%EB%A1%9C-%EB%8C%80%EC%B9%98"> </a>
+</h5>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -707,8 +750,8 @@ Name: age(pad), dtype: float64
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span><span class="p">[</span><span class="s1">'aeg(back)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'bfill'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">'aeg(back)'</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span><span class="p">[</span><span class="s1">'age(back)'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'bfill'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">'age(back)'</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
 </pre></div>
 
     </div>
