@@ -132,6 +132,8 @@ window.onload = wrap_img;
 <h2 id="7.1.2-블러링">
 <a class="anchor" href="#7.1.2-%EB%B8%94%EB%9F%AC%EB%A7%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.1.2 블러링<a class="anchor-link" href="#7.1.2-%EB%B8%94%EB%9F%AC%EB%A7%81"> </a>
 </h2>
+<p>블러링은 영상에서 화소값이 급격하게 변하는 부분들을 감소시켜 점진적으로 변하게 함으로써 영상에서 전체적으로 부드러운 느낌이 나게 하는 기술이다. 교재에 따라서 스무딩(smoothing)이라 하기도 한다.</p>
+
 </div>
 </div>
 </div>
@@ -142,7 +144,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">cv2</span>
 </pre></div>
 
     </div>
@@ -159,10 +161,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">cv2</span>
-
-<span class="c1"># 회선수행 함수 - 행렬 처리 방식 (속도 면에서 유리)</span>
-<span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
     <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">dst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="c1"># 회선 결과 저장 행렬</span>
     
@@ -185,6 +184,110 @@ window.onload = wrap_img;
 </div>
     
 
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">filter2</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>                 <span class="c1"># 회선 결과 저장 행렬</span>
+    <span class="n">xcenter</span><span class="p">,</span> <span class="n">ycenter</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">2</span>  <span class="c1"># 마스크 중심 좌표</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ycenter</span><span class="p">,</span> <span class="n">rows</span> <span class="o">-</span> <span class="n">ycenter</span><span class="p">):</span>                  <span class="c1"># 입력 행렬 반복 순회</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">xcenter</span><span class="p">,</span> <span class="n">cols</span> <span class="o">-</span> <span class="n">xcenter</span><span class="p">):</span>
+            <span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>                    <span class="c1"># 마스크 원소 순회</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">u</span> <span class="o">-</span> <span class="n">ycenter</span> <span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">v</span> <span class="o">-</span> <span class="n">xcenter</span>
+                    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">image</span><span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="n">mask</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">]</span>           <span class="c1"># 회선 수식</span>
+            <span class="n">dst</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span>
+    <span class="k">return</span> <span class="n">dst</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">"./ghtop_images/chap07_images/filter_blur.jpg"</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>  <span class="c1"># 영상 읽기</span>
+<span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"영상파일 읽기 오류"</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span>
+        <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span>
+        <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">9</span><span class="p">]</span>
+
+<span class="c1"># 마스크 행렬 생성</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">blur1</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>                <span class="c1"># 회선 수행 - 행렬 처리 방식</span>
+<span class="n">blur2</span> <span class="o">=</span> <span class="n">filter2</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>               <span class="c1"># 회선 수행 - 화소 직접 접근</span>
+<span class="n">blur1</span> <span class="o">=</span> <span class="n">blur1</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'uint8'</span><span class="p">)</span>              <span class="c1"># 행렬 표시위해 uint8형 변환</span>
+<span class="n">blur2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">convertScaleAbs</span><span class="p">(</span><span class="n">blur2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'image'</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'blur1'</span><span class="p">,</span> <span class="n">blur1</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">'blur2'</span><span class="p">,</span> <span class="n">blur2</span><span class="p">)</span>
+
+<span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span> <span class="c1"># 모든 창 닫기</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ref : <a href="https://pinkocto.github.io/BP2022/python/2022/10/15/opencv.html">https://pinkocto.github.io/BP2022/python/2022/10/15/opencv.html</a></p>
+
+</div>
+</div>
+</div>
 </div>
 
 
