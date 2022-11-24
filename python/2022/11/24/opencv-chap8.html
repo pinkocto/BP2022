@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>(OpenCV - Chap8) 기하학 처리 | 2022 Study</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="(OpenCV - Chap8) 기하학 처리" />
+<meta name="author" content="dinonene" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="RST 변환" />
+<meta property="og:description" content="RST 변환" />
+<link rel="canonical" href="https://pinkocto.github.io/BP2022/python/2022/11/24/opencv-chap8.html" />
+<meta property="og:url" content="https://pinkocto.github.io/BP2022/python/2022/11/24/opencv-chap8.html" />
+<meta property="og:site_name" content="2022 Study" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-24T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="(OpenCV - Chap8) 기하학 처리" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"dinonene"},"dateModified":"2022-11-24T00:00:00-06:00","datePublished":"2022-11-24T00:00:00-06:00","description":"RST 변환","headline":"(OpenCV - Chap8) 기하학 처리","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkocto.github.io/BP2022/python/2022/11/24/opencv-chap8.html"},"url":"https://pinkocto.github.io/BP2022/python/2022/11/24/opencv-chap8.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/BP2022/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pinkocto.github.io/BP2022/feed.xml" title="2022 Study" /><link rel="shortcut icon" type="image/x-icon" href="/BP2022/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/BP2022/">2022 Study</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/BP2022/about/">About Me</a><a class="page-link" href="/BP2022/search/">Search</a><a class="page-link" href="/BP2022/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">(OpenCV - Chap8) 기하학 처리</h1><p class="page-description">RST 변환</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-11-24T00:00:00-06:00" itemprop="datePublished">
+        Nov 24, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">dinonene</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/BP2022/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#8.2-크기-변경-(확대-/-축소)">8.2 크기 변경 (확대 / 축소) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#크기-변경-(Scaling)">크기 변경 (Scaling) </a></li>
+<li class="toc-entry toc-h3"><a href="#크기변경-수식">크기변경 수식 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#8.3-보간">8.3 보간 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#8.3.1-최근접-이웃-보간법-(nearest-neighbor-interpolation)">8.3.1 최근접 이웃 보간법 (nearest neighbor interpolation) </a></li>
+<li class="toc-entry toc-h3"><a href="#8.3.2-양선형-보간법">8.3.2 양선형 보간법 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#--최근접-이웃-보간법의-문제">- 최근접 이웃 보간법의 문제 </a></li>
+<li class="toc-entry toc-h4"><a href="#--양선형-보간법">- 양선형 보간법 </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#8.4-평행이동">8.4 평행이동 </a></li>
+<li class="toc-entry toc-h2"><a href="#8.5-회전">8.5 회전 </a></li>
+<li class="toc-entry toc-h2"><a href="#8.6-행렬-연산을-통한-기하학-변환---어파인-변환">8.6 행렬 연산을 통한 기하학 변환 - 어파인 변환 </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-11-24-opencv-chap8.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 기하학적 처리의 기본</p>
+<ul>
+<li>화소들의 배치 변경 $\to$ 사상(mapping)의 의미 이해</li>
+</ul>
+<p><code>-</code> 사상</p>
+<ul>
+<li>화소들의 배치를 변경할 때, 입력영상의 좌표에 해당하는 해당 목적영상의 좌표를 찾아서 화소값을 옮기는 과정</li>
+</ul>
+<p><code>-</code> 순방향 사상(forward mapping)</p>
+<ul>
+<li>
+<p>원본 영상의 좌표를 중심으로 목적영상의 좌표를 계산하여 화소의 위치를 반환하는 방식 $\to$ 입력 영상과 출력 영상의 클기가 같을 때 유용</p>
+</li>
+<li>
+<p>두 영상의 크기가 달라지면, 홀(HOLE)이나 오버랩(OVERLAP)의 문제가 발생</p>
+</li>
+</ul>
+<p><code>-</code> 역방향 사상 (reverse mapping)</p>
+<ul>
+<li>
+<p>목적 영상의 좌표를 중심으로 역변환을 계산하여 해당하는 입력 영상의 좌표를 찾아서 화소값을 옮기는 과정</p>
+</li>
+<li>
+<p>홀이나 오버랩은 발생하지 않음</p>
+</li>
+<li>입력영상의 한 화소를 목적영상의 여러 화소에서 사용하게 되면 결과 영상의 품질 저하</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.2-크기-변경-(확대-/-축소)">
+<a class="anchor" href="#8.2-%ED%81%AC%EA%B8%B0-%EB%B3%80%EA%B2%BD-(%ED%99%95%EB%8C%80-/-%EC%B6%95%EC%86%8C)" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.2 크기 변경 (확대 / 축소)<a class="anchor-link" href="#8.2-%ED%81%AC%EA%B8%B0-%EB%B3%80%EA%B2%BD-(%ED%99%95%EB%8C%80-/-%EC%B6%95%EC%86%8C)"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="크기-변경-(Scaling)">
+<a class="anchor" href="#%ED%81%AC%EA%B8%B0-%EB%B3%80%EA%B2%BD-(Scaling)" aria-hidden="true"><span class="octicon octicon-link"></span></a>크기 변경 (Scaling)<a class="anchor-link" href="#%ED%81%AC%EA%B8%B0-%EB%B3%80%EA%B2%BD-(Scaling)"> </a>
+</h3>
+<ul>
+<li>입력영상의 가로와 세로로 크기를 변경해서 목적 영상을 만드는 방법</li>
+<li>입력영상보다 변경하고자 하는 영상의 크기가 커지면 확대, 작아지면 축소</li>
+</ul>
+<h3 id="크기변경-수식">
+<a class="anchor" href="#%ED%81%AC%EA%B8%B0%EB%B3%80%EA%B2%BD-%EC%88%98%EC%8B%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>크기변경 수식<a class="anchor-link" href="#%ED%81%AC%EA%B8%B0%EB%B3%80%EA%B2%BD-%EC%88%98%EC%8B%9D"> </a>
+</h3>
+<p>변경 비율 및 변경 크기 이용</p>
+<ul>
+<li>$x' = x\cdot ratio X$ <br>
+</li>
+<li>$y' = y\cdot ratio Y$</li>
+</ul>
+<p>
+$$ ratio X = \frac{dst_{width}}{org_{width}},\qquad ratio Y = \frac{dst_{height}}{org_{height}}$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.3-보간">
+<a class="anchor" href="#8.3-%EB%B3%B4%EA%B0%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.3 보간<a class="anchor-link" href="#8.3-%EB%B3%B4%EA%B0%84"> </a>
+</h2>
+<p>알고있는 데이터를 기준으로 값을 추정하는 것.</p>
+<ul>
+<li>순방향 사상으로 영상 확대 - 홀이 많이 발생</li>
+</ul>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/forward_mapping_hole.PNG" alt="">
+    
+    
+</figure>
+</p>
+<ul>
+<li>역방향 사상을 통해서 홀의 화소들을 입력 영상에서 찾음<ul>
+<li>영상을 축소할 때에는 오버랩의 문제가 발생</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<strong>보간법 (interpolation) 필요</strong> <br>
+목적 영상에서 홀의 화소들을 채우고, 오버랩이 되지 않게 화소들을 배치하여 목적 영상을 만드는 기법</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="8.3.1-최근접-이웃-보간법-(nearest-neighbor-interpolation)">
+<a class="anchor" href="#8.3.1-%EC%B5%9C%EA%B7%BC%EC%A0%91-%EC%9D%B4%EC%9B%83-%EB%B3%B4%EA%B0%84%EB%B2%95-(nearest-neighbor-interpolation)" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.3.1 최근접 이웃 보간법 (nearest neighbor interpolation)<a class="anchor-link" href="#8.3.1-%EC%B5%9C%EA%B7%BC%EC%A0%91-%EC%9D%B4%EC%9B%83-%EB%B3%B4%EA%B0%84%EB%B2%95-(nearest-neighbor-interpolation)"> </a>
+</h3>
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/nn_interpolation.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="8.3.2-양선형-보간법">
+<a class="anchor" href="#8.3.2-%EC%96%91%EC%84%A0%ED%98%95-%EB%B3%B4%EA%B0%84%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.3.2 양선형 보간법<a class="anchor-link" href="#8.3.2-%EC%96%91%EC%84%A0%ED%98%95-%EB%B3%B4%EA%B0%84%EB%B2%95"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--최근접-이웃-보간법의-문제">
+<a class="anchor" href="#--%EC%B5%9C%EA%B7%BC%EC%A0%91-%EC%9D%B4%EC%9B%83-%EB%B3%B4%EA%B0%84%EB%B2%95%EC%9D%98-%EB%AC%B8%EC%A0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 최근접 이웃 보간법의 문제<a class="anchor-link" href="#--%EC%B5%9C%EA%B7%BC%EC%A0%91-%EC%9D%B4%EC%9B%83-%EB%B3%B4%EA%B0%84%EB%B2%95%EC%9D%98-%EB%AC%B8%EC%A0%9C"> </a>
+</h4>
+<p>확대비율이 커지면, 모자이크 현상 혹은 경계부분에서 계단현상 발생</p>
+<p>$\to$ 양선형 보간 (bilinear interpolation)으로 해결
+직선의 선상에 위치한 중간 화소들의 값은 직선의 수식을 이용해서 쉽게 계산</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="--양선형-보간법">
+<a class="anchor" href="#--%EC%96%91%EC%84%A0%ED%98%95-%EB%B3%B4%EA%B0%84%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 양선형 보간법<a class="anchor-link" href="#--%EC%96%91%EC%84%A0%ED%98%95-%EB%B3%B4%EA%B0%84%EB%B2%95"> </a>
+</h4>
+<p>선형 보간을 두 번에 걸쳐서 수행하기에 붙여진 이름</p>
+<ul>
+<li>
+<p>목적영상 화소($P$)를 역변환으로 계산하여 가장 가까운 위치에 있는 입력영상의 4개 화소(A, B, C, D) 값 가져옴</p>
+</li>
+<li>
+<p>4개 화소를 두 개씩(AB, CD) 묶어서 두 화소를 화소값($P_1, P_2, P_3, P_4)$으로 잇는 직선 구성</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/bilinear_interpolation.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.4-평행이동">
+<a class="anchor" href="#8.4-%ED%8F%89%ED%96%89%EC%9D%B4%EB%8F%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.4 평행이동<a class="anchor-link" href="#8.4-%ED%8F%89%ED%96%89%EC%9D%B4%EB%8F%99"> </a>
+</h2>
+<ul>
+<li>영상의 원점을 모든 화소를 동일하게 가로방향과 세로 방향으로 옮기는 것</li>
+<li>가로 방향으로 $dx$만큼, 세로 방향으로 $dy$만큼 전체 영상의 모든 화소 이동한 예</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/translation.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/translation_result.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.5-회전">
+<a class="anchor" href="#8.5-%ED%9A%8C%EC%A0%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.5 회전<a class="anchor-link" href="#8.5-%ED%9A%8C%EC%A0%84"> </a>
+</h2>
+<p>입력영상의 모든 화소를 영상의 원점을 기준으로 원하는 각도만큼 모든 화소에 대해서 회전 변환을 시키는 것</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./prac_image/rotation.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="8.6-행렬-연산을-통한-기하학-변환---어파인-변환">
+<a class="anchor" href="#8.6-%ED%96%89%EB%A0%AC-%EC%97%B0%EC%82%B0%EC%9D%84-%ED%86%B5%ED%95%9C-%EA%B8%B0%ED%95%98%ED%95%99-%EB%B3%80%ED%99%98---%EC%96%B4%ED%8C%8C%EC%9D%B8-%EB%B3%80%ED%99%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>8.6 행렬 연산을 통한 기하학 변환 - 어파인 변환<a class="anchor-link" href="#8.6-%ED%96%89%EB%A0%AC-%EC%97%B0%EC%82%B0%EC%9D%84-%ED%86%B5%ED%95%9C-%EA%B8%B0%ED%95%98%ED%95%99-%EB%B3%80%ED%99%98---%EC%96%B4%ED%8C%8C%EC%9D%B8-%EB%B3%80%ED%99%98"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>기하학 변환 수식이 행렬의 곱으로 표현 가능</p>
+<p><code>-</code> 회전</p>
+<p><code>-</code> 평행이동</p>
+<p><code>-</code> 크기변경</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="pinkocto/BP2022"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/BP2022/python/2022/11/24/opencv-chap8.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/BP2022/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/BP2022/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/BP2022/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
