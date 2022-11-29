@@ -119,19 +119,23 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#군집화-수행-시-주요-고려사항">군집화 수행 시 주요 고려사항 </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="##1.어떤-거리-척도를-사용하여-유사도를-측정할-것인가?">#1.어떤 거리 척도를 사용하여 유사도를 측정할 것인가? </a></li>
-<li class="toc-entry toc-h3"><a href="##2.-군집화:-알고리즘">#2. 군집화: 알고리즘 </a></li>
-<li class="toc-entry toc-h3"><a href="#계층적-군집화-(Hierarchical-Clustering)">계층적 군집화 (Hierarchical Clustering) </a>
+<li class="toc-entry toc-h3"><a href="##2.-군집화:-알고리즘">#2. 군집화: 알고리즘 </a>
 <ul>
+<li class="toc-entry toc-h4"><a href="#계층적-군집화-(Hierarchical-Clustering)">계층적 군집화 (Hierarchical Clustering) </a></li>
 <li class="toc-entry toc-h4"><a href="#계층적-군집화-수행-예시">계층적 군집화 수행 예시 </a></li>
 <li class="toc-entry toc-h4"><a href="#핵심-수행-절차-:-두-군집-사이의-유사성/거리-측정">핵심 수행 절차 : 두 군집 사이의 유사성/거리 측정 </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h3"><a href="#K-평균-군집화-(K-Means-Clustering)">K-평균 군집화 (K-Means Clustering) </a>
-<ul>
+<li class="toc-entry toc-h4"><a href="#K-평균-군집화-(K-Means-Clustering)">K-평균 군집화 (K-Means Clustering) </a></li>
 <li class="toc-entry toc-h4"><a href="#무작위-초기-중심-설정의-위험을-피하고자-다양한-연구-존재">무작위 초기 중심 설정의 위험을 피하고자 다양한 연구 존재 </a></li>
+<li class="toc-entry toc-h4"><a href="#K-평균-군집화의-문제점">K-평균 군집화의 문제점 </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#K-평균-군집화의-문제점">K-평균 군집화의 문제점 </a></li>
+<li class="toc-entry toc-h3"><a href="##3.-군집화:-최적의-군집-수-결정">#3. 군집화: 최적의 군집 수 결정 </a></li>
+<li class="toc-entry toc-h3"><a href="##4.-군집화:-결과-측정-및-평가">#4. 군집화: 결과 측정 및 평가 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#내부-평가지표">내부 평가지표 </a></li>
+<li class="toc-entry toc-h4"><a href="#외부-평가지표">외부 평가지표 </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -212,9 +216,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="계층적-군집화-(Hierarchical-Clustering)">
+<h4 id="계층적-군집화-(Hierarchical-Clustering)">
 <a class="anchor" href="#%EA%B3%84%EC%B8%B5%EC%A0%81-%EA%B5%B0%EC%A7%91%ED%99%94-(Hierarchical-Clustering)" aria-hidden="true"><span class="octicon octicon-link"></span></a>계층적 군집화 (Hierarchical Clustering)<a class="anchor-link" href="#%EA%B3%84%EC%B8%B5%EC%A0%81-%EA%B5%B0%EC%A7%91%ED%99%94-(Hierarchical-Clustering)"> </a>
-</h3>
+</h4>
 <ul>
 <li>계층적 트리모형을 이용하여 개별 개체들을 순차적/계층적으로 유사한 개체/군집과 통합</li>
 <li>
@@ -294,9 +298,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="K-평균-군집화-(K-Means-Clustering)">
+<h4 id="K-평균-군집화-(K-Means-Clustering)">
 <a class="anchor" href="#K-%ED%8F%89%EA%B7%A0-%EA%B5%B0%EC%A7%91%ED%99%94-(K-Means-Clustering)" aria-hidden="true"><span class="octicon octicon-link"></span></a>K-평균 군집화 (K-Means Clustering)<a class="anchor-link" href="#K-%ED%8F%89%EA%B7%A0-%EA%B5%B0%EC%A7%91%ED%99%94-(K-Means-Clustering)"> </a>
-</h3>
+</h4>
 <blockquote>
 <p>대표적인 분리형 군집화 알고리즘</p>
 </blockquote>
@@ -341,9 +345,9 @@ $$\underset{C}{\operatorname{\arg min}} \sum_{i=1}^K \sum_{x_j \in C_i} ||x_j-c_
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="K-평균-군집화의-문제점">
+<h4 id="K-평균-군집화의-문제점">
 <a class="anchor" href="#K-%ED%8F%89%EA%B7%A0-%EA%B5%B0%EC%A7%91%ED%99%94%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>K-평균 군집화의 문제점<a class="anchor-link" href="#K-%ED%8F%89%EA%B7%A0-%EA%B5%B0%EC%A7%91%ED%99%94%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90"> </a>
-</h3>
+</h4>
 <ul>
 <li>문제1 : <strong>서로 다른 크기</strong>의 군집을 잘 찾아내지 못함</li>
 <li>문제2 : <strong>서로 다른 밀도</strong>의 군집을 잘 찾아내지 못함</li>
@@ -352,6 +356,73 @@ $$\underset{C}{\operatorname{\arg min}} \sum_{i=1}^K \sum_{x_j \in C_i} ||x_j-c_
 <li>지역적 패턴이 존재할 때 Geodesic distance를 이용한다.</li>
 </ul>
 </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="#3.-군집화:-최적의-군집-수-결정">
+<a class="anchor" href="##3.-%EA%B5%B0%EC%A7%91%ED%99%94:-%EC%B5%9C%EC%A0%81%EC%9D%98-%EA%B5%B0%EC%A7%91-%EC%88%98-%EA%B2%B0%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#3.</code> 군집화: 최적의 군집 수 결정<a class="anchor-link" href="##3.-%EA%B5%B0%EC%A7%91%ED%99%94:-%EC%B5%9C%EC%A0%81%EC%9D%98-%EA%B5%B0%EC%A7%91-%EC%88%98-%EA%B2%B0%EC%A0%95"> </a>
+</h3>
+<blockquote>
+<p>어떻게 최적의 군집 수를 결정할 것인가?</p>
+</blockquote>
+<ul>
+<li>예시) 20개의 관측치가 존재할 때, 최적의 군집 수는?</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>다양한 군집 수에 대해 성능 평가 지표를 도시하여 최적의 군집 수 선택</li>
+<li>Elbow point에서 최적 군집 수가 결정되는 경우가 일반적</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/best_cluster.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="#4.-군집화:-결과-측정-및-평가">
+<a class="anchor" href="##4.-%EA%B5%B0%EC%A7%91%ED%99%94:-%EA%B2%B0%EA%B3%BC-%EC%B8%A1%EC%A0%95-%EB%B0%8F-%ED%8F%89%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#4.</code> 군집화: 결과 측정 및 평가<a class="anchor-link" href="##4.-%EA%B5%B0%EC%A7%91%ED%99%94:-%EA%B2%B0%EA%B3%BC-%EC%B8%A1%EC%A0%95-%EB%B0%8F-%ED%8F%89%EA%B0%80"> </a>
+</h3>
+<blockquote>
+<p>어떻게 군집화 결과를 측정/평가할 것인가?
+분류 알고리즘처럼 모든 상황에 적용가능한 평가 지표 부재</p>
+</blockquote>
+<h4 id="내부-평가지표">
+<a class="anchor" href="#%EB%82%B4%EB%B6%80-%ED%8F%89%EA%B0%80%EC%A7%80%ED%91%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>내부 평가지표<a class="anchor-link" href="#%EB%82%B4%EB%B6%80-%ED%8F%89%EA%B0%80%EC%A7%80%ED%91%9C"> </a>
+</h4>
+<ul>
+<li>Dunn Index, Silhouette, Sum of Squared Error,...</li>
+</ul>
+<h4 id="외부-평가지표">
+<a class="anchor" href="#%EC%99%B8%EB%B6%80-%ED%8F%89%EA%B0%80%EC%A7%80%ED%91%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>외부 평가지표<a class="anchor-link" href="#%EC%99%B8%EB%B6%80-%ED%8F%89%EA%B0%80%EC%A7%80%ED%91%9C"> </a>
+</h4>
+<ul>
+<li>Rand Index, Jaccard Coefficient, Folks and Mallows Index,...</li>
 </ul>
 
 </div>
