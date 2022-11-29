@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      7 min read
     
 </span></p>
 
@@ -143,11 +143,30 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h2"><a href="#PCA-알고리즘---주성분-추출">PCA 알고리즘 - 주성분 추출 </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#PCA---예제">PCA - 예제 </a>
+<li class="toc-entry toc-h3"><a href="#PCA---예제">PCA - 예제 </a></li>
+<li class="toc-entry toc-h3"><a href="##-몇-개의-주성분을-사용해야-할까?"># 몇 개의 주성분을 사용해야 할까? </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="##-몇-개의-주성분을-사용해야-할까?"># 몇 개의 주성분을 사용해야 할까? </a></li>
+<li class="toc-entry toc-h4"><a href="#1.-선택방식-1-:-고유값-감소율이-유의미하게-낮아지는-Elbow-Point에-해당하는-주성분-수를-선택">1. 선택방식 1 : 고유값 감소율이 유의미하게 낮아지는 Elbow Point에 해당하는 주성분 수를 선택 </a></li>
+<li class="toc-entry toc-h4"><a href="#2.-선택방식-2:-일정-수준-이상의-분산비를-보존하는-최소의-주성분을-선택-(보통-70%-이상)">2. 선택방식 2: 일정 수준 이상의 분산비를 보존하는 최소의 주성분을 선택 (보통 70% 이상) </a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#PCA-Loading-Plot----예제">PCA Loading Plot -  예제 </a></li>
+<li class="toc-entry toc-h2"><a href="#PCA-알고리즘---요약">PCA 알고리즘 - 요약 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step1.-데이터-정규화-(mean-centering)">step1. 데이터 정규화 (mean centering) </a></li>
+<li class="toc-entry toc-h3"><a href="#step2.-기존-변수의-covariance-(correlation)-matrix-계산">step2. 기존 변수의 covariance (correlation) matrix 계산 </a></li>
+<li class="toc-entry toc-h3"><a href="#step3.-Covariance-(correlation)-matrix로부터-eigenvalue-및-이에-해당되는-eigenvector를-계산">step3. Covariance (correlation) matrix로부터 eigenvalue 및 이에 해당되는 eigenvector를 계산 </a></li>
+<li class="toc-entry toc-h3"><a href="#step4.-Eigenvalue-및-해당되는-eigenvectors를-순서대로-나열">step4. Eigenvalue 및 해당되는 eigenvectors를 순서대로 나열 </a></li>
+<li class="toc-entry toc-h3"><a href="#step5.-정렬된-eigenvector를-토대로-기존-변수를-변환">step5. 정렬된 eigenvector를 토대로 기존 변수를 변환 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#PCA-한계">PCA 한계 </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#주성분-분석의-특징">주성분 분석의 특징 </a></li>
+<li class="toc-entry toc-h3"><a href="#한계점1">한계점1 </a></li>
+<li class="toc-entry toc-h3"><a href="#한계점2">한계점2 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -715,9 +734,9 @@ $$Cov(Z_1, Z_1) = 2.7596$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="#-몇-개의-주성분을-사용해야-할까?">
+<h3 id="#-몇-개의-주성분을-사용해야-할까?">
 <a class="anchor" href="##-%EB%AA%87-%EA%B0%9C%EC%9D%98-%EC%A3%BC%EC%84%B1%EB%B6%84%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C?" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#</code> 몇 개의 주성분을 사용해야 할까?<a class="anchor-link" href="##-%EB%AA%87-%EA%B0%9C%EC%9D%98-%EC%A3%BC%EC%84%B1%EB%B6%84%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C?"> </a>
-</h4>
+</h3>
 </div>
 </div>
 </div>
@@ -755,6 +774,192 @@ $$\text{Eigenvalues of the covariance matrix}=\text{Variances of each principal 
     
 </figure>
 </p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$\text{Eigenvalues of the covariance matrix} (\lambda_1,\lambda_2,\lambda_3)$$
+</p>
+<p>
+$$=\text{Variances of each principal component (각 주성분의 분산)}$$
+</p>
+$$Cov(Z) = \begin{bmatrix}2.7596 &amp; 0 &amp; 0 \\
+0 &amp; 0.1618 &amp; 0\\
+0 &amp; 0 &amp; 0.0786
+\end{bmatrix}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$Var(Z_1) = 2.7596 = \lambda_3 (\text{Largest eigenvalues})$</p>
+<p>$Var(Z_2) = 0.1618 = \lambda_2$</p>
+<p>$Var(Z_3) = 0.0786 = \lambda_1$</p>
+<p>
+$$\text{[Proportion of total population variance due to the 1st principal component]} = \frac{\lambda_3}{\lambda_1+ \lambda_2 + \lambda_3}=\frac{2.7596}{0.0786+0.1618+2.7596} = 0.920$$
+</p>
+<p>첫번째 주성분만 사용하면 원래 데이터의 약 $92\%$를 설명할 수 있다는 것!!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>굳이 두번째, 3번째 주성분을 사용하지 않아도 될 것 같다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="1.-선택방식-1-:-고유값-감소율이-유의미하게-낮아지는-Elbow-Point에-해당하는-주성분-수를-선택">
+<a class="anchor" href="#1.-%EC%84%A0%ED%83%9D%EB%B0%A9%EC%8B%9D-1-:-%EA%B3%A0%EC%9C%A0%EA%B0%92-%EA%B0%90%EC%86%8C%EC%9C%A8%EC%9D%B4-%EC%9C%A0%EC%9D%98%EB%AF%B8%ED%95%98%EA%B2%8C-%EB%82%AE%EC%95%84%EC%A7%80%EB%8A%94-Elbow-Point%EC%97%90-%ED%95%B4%EB%8B%B9%ED%95%98%EB%8A%94-%EC%A3%BC%EC%84%B1%EB%B6%84-%EC%88%98%EB%A5%BC-%EC%84%A0%ED%83%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>1.</code> 선택방식 1 : 고유값 감소율이 유의미하게 낮아지는 Elbow Point에 해당하는 주성분 수를 선택<a class="anchor-link" href="#1.-%EC%84%A0%ED%83%9D%EB%B0%A9%EC%8B%9D-1-:-%EA%B3%A0%EC%9C%A0%EA%B0%92-%EA%B0%90%EC%86%8C%EC%9C%A8%EC%9D%B4-%EC%9C%A0%EC%9D%98%EB%AF%B8%ED%95%98%EA%B2%8C-%EB%82%AE%EC%95%84%EC%A7%80%EB%8A%94-Elbow-Point%EC%97%90-%ED%95%B4%EB%8B%B9%ED%95%98%EB%8A%94-%EC%A3%BC%EC%84%B1%EB%B6%84-%EC%88%98%EB%A5%BC-%EC%84%A0%ED%83%9D"> </a>
+</h4>
+<h4 id="2.-선택방식-2:-일정-수준-이상의-분산비를-보존하는-최소의-주성분을-선택-(보통-70%-이상)">
+<a class="anchor" href="#2.-%EC%84%A0%ED%83%9D%EB%B0%A9%EC%8B%9D-2:-%EC%9D%BC%EC%A0%95-%EC%88%98%EC%A4%80-%EC%9D%B4%EC%83%81%EC%9D%98-%EB%B6%84%EC%82%B0%EB%B9%84%EB%A5%BC-%EB%B3%B4%EC%A1%B4%ED%95%98%EB%8A%94-%EC%B5%9C%EC%86%8C%EC%9D%98-%EC%A3%BC%EC%84%B1%EB%B6%84%EC%9D%84-%EC%84%A0%ED%83%9D-(%EB%B3%B4%ED%86%B5-70%-%EC%9D%B4%EC%83%81)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>2.</code> 선택방식 2: 일정 수준 이상의 분산비를 보존하는 최소의 주성분을 선택 (보통 70% 이상)<a class="anchor-link" href="#2.-%EC%84%A0%ED%83%9D%EB%B0%A9%EC%8B%9D-2:-%EC%9D%BC%EC%A0%95-%EC%88%98%EC%A4%80-%EC%9D%B4%EC%83%81%EC%9D%98-%EB%B6%84%EC%82%B0%EB%B9%84%EB%A5%BC-%EB%B3%B4%EC%A1%B4%ED%95%98%EB%8A%94-%EC%B5%9C%EC%86%8C%EC%9D%98-%EC%A3%BC%EC%84%B1%EB%B6%84%EC%9D%84-%EC%84%A0%ED%83%9D-(%EB%B3%B4%ED%86%B5-70%-%EC%9D%B4%EC%83%81)"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="PCA-Loading-Plot----예제">
+<a class="anchor" href="#PCA-Loading-Plot----%EC%98%88%EC%A0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>PCA Loading Plot -  예제<a class="anchor-link" href="#PCA-Loading-Plot----%EC%98%88%EC%A0%9C"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>PCA Loading : 실제 변수가 주성분 결정에 얼마나 많은 영향을 미쳤는지</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="PCA-알고리즘---요약">
+<a class="anchor" href="#PCA-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98---%EC%9A%94%EC%95%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>PCA 알고리즘 - 요약<a class="anchor-link" href="#PCA-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98---%EC%9A%94%EC%95%BD"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="step1.-데이터-정규화-(mean-centering)">
+<a class="anchor" href="#step1.-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%95%EA%B7%9C%ED%99%94-(mean-centering)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>step1.</code> 데이터 정규화 (mean centering)<a class="anchor-link" href="#step1.-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A0%95%EA%B7%9C%ED%99%94-(mean-centering)"> </a>
+</h3>
+<h3 id="step2.-기존-변수의-covariance-(correlation)-matrix-계산">
+<a class="anchor" href="#step2.-%EA%B8%B0%EC%A1%B4-%EB%B3%80%EC%88%98%EC%9D%98-covariance-(correlation)-matrix-%EA%B3%84%EC%82%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>step2.</code> 기존 변수의 covariance (correlation) matrix 계산<a class="anchor-link" href="#step2.-%EA%B8%B0%EC%A1%B4-%EB%B3%80%EC%88%98%EC%9D%98-covariance-(correlation)-matrix-%EA%B3%84%EC%82%B0"> </a>
+</h3>
+<h3 id="step3.-Covariance-(correlation)-matrix로부터-eigenvalue-및-이에-해당되는-eigenvector를-계산">
+<a class="anchor" href="#step3.-Covariance-(correlation)-matrix%EB%A1%9C%EB%B6%80%ED%84%B0-eigenvalue-%EB%B0%8F-%EC%9D%B4%EC%97%90-%ED%95%B4%EB%8B%B9%EB%90%98%EB%8A%94-eigenvector%EB%A5%BC-%EA%B3%84%EC%82%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>step3.</code> Covariance (correlation) matrix로부터 eigenvalue 및 이에 해당되는 eigenvector를 계산<a class="anchor-link" href="#step3.-Covariance-(correlation)-matrix%EB%A1%9C%EB%B6%80%ED%84%B0-eigenvalue-%EB%B0%8F-%EC%9D%B4%EC%97%90-%ED%95%B4%EB%8B%B9%EB%90%98%EB%8A%94-eigenvector%EB%A5%BC-%EA%B3%84%EC%82%B0"> </a>
+</h3>
+<h3 id="step4.-Eigenvalue-및-해당되는-eigenvectors를-순서대로-나열">
+<a class="anchor" href="#step4.-Eigenvalue-%EB%B0%8F-%ED%95%B4%EB%8B%B9%EB%90%98%EB%8A%94-eigenvectors%EB%A5%BC-%EC%88%9C%EC%84%9C%EB%8C%80%EB%A1%9C-%EB%82%98%EC%97%B4" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>step4.</code> Eigenvalue 및 해당되는 eigenvectors를 순서대로 나열<a class="anchor-link" href="#step4.-Eigenvalue-%EB%B0%8F-%ED%95%B4%EB%8B%B9%EB%90%98%EB%8A%94-eigenvectors%EB%A5%BC-%EC%88%9C%EC%84%9C%EB%8C%80%EB%A1%9C-%EB%82%98%EC%97%B4"> </a>
+</h3>
+<ul>
+<li>$\lambda(1) &gt; \lambda(2) &gt; \lambda(3) &gt; \lambda(4) &gt; \lambda(5)$</li>
+<li>$e(1) &gt; e(2) &gt; e(3) &gt; e(4) &gt; e(5), \quad i=1,\dots,5 \text{ is a vector}$</li>
+</ul>
+<h3 id="step5.-정렬된-eigenvector를-토대로-기존-변수를-변환">
+<a class="anchor" href="#step5.-%EC%A0%95%EB%A0%AC%EB%90%9C-eigenvector%EB%A5%BC-%ED%86%A0%EB%8C%80%EB%A1%9C-%EA%B8%B0%EC%A1%B4-%EB%B3%80%EC%88%98%EB%A5%BC-%EB%B3%80%ED%99%98" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>step5.</code> 정렬된 eigenvector를 토대로 기존 변수를 변환<a class="anchor-link" href="#step5.-%EC%A0%95%EB%A0%AC%EB%90%9C-eigenvector%EB%A5%BC-%ED%86%A0%EB%8C%80%EB%A1%9C-%EA%B8%B0%EC%A1%B4-%EB%B3%80%EC%88%98%EB%A5%BC-%EB%B3%80%ED%99%98"> </a>
+</h3>
+<ul>
+<li>$Z_1 = e(1)\bf{X} = e_{11}\cdot X_1 + e_{12}\cdot X_2 + \dots + e_{15}\cdot X_5$</li>
+<li>$Z_2 = e(1)\bf{X} = e_{21}\cdot X_1 + e_{22}\cdot X_2 + \dots + e_{25}\cdot X_5$</li>
+<li>$\dots$</li>
+<li>$Z_5 = e(5)\bf{X} = e_{51}\cdot X_1 + e_{52}\cdot X_2 + \dots + e_{55}\cdot X_5$</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="PCA-한계">
+<a class="anchor" href="#PCA-%ED%95%9C%EA%B3%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>PCA 한계<a class="anchor-link" href="#PCA-%ED%95%9C%EA%B3%84"> </a>
+</h2>
+<h3 id="주성분-분석의-특징">
+<a class="anchor" href="#%EC%A3%BC%EC%84%B1%EB%B6%84-%EB%B6%84%EC%84%9D%EC%9D%98-%ED%8A%B9%EC%A7%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>주성분 분석의 특징<a class="anchor-link" href="#%EC%A3%BC%EC%84%B1%EB%B6%84-%EB%B6%84%EC%84%9D%EC%9D%98-%ED%8A%B9%EC%A7%95"> </a>
+</h3>
+<p>공분산 행렬의 고유벡터를 사용하므로 단일 가우시안(unimodal) 분포로 추정할 수 있는 데이터에 대해 서로 독립적인 축을 찾는데 사용할 수 있음</p>
+<h3 id="한계점1">
+<a class="anchor" href="#%ED%95%9C%EA%B3%84%EC%A0%901" aria-hidden="true"><span class="octicon octicon-link"></span></a>한계점1<a class="anchor-link" href="#%ED%95%9C%EA%B3%84%EC%A0%901"> </a>
+</h3>
+<ul>
+<li>
+<p>데이터의 분포가 가우시안이 아니거나 다중 가우시안(multimodal) 자료들에 대해서는 적용하기가 어려움</p>
+</li>
+<li>
+<p>대안: 커널PCA, LLE (Locally Linear Embedding)</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/pca_limit.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="한계점2">
+<a class="anchor" href="#%ED%95%9C%EA%B3%84%EC%A0%902" aria-hidden="true"><span class="octicon octicon-link"></span></a>한계점2<a class="anchor-link" href="#%ED%95%9C%EA%B3%84%EC%A0%902"> </a>
+</h3>
+<ul>
+<li>분류/예측 문제에 대해서 데이터의 범주 정보를 고려하지 않기 때문에 범주간 구분이 잘 되도록 변환을 해주는 것은 아님<ul>
+<li>주성분분석은 단순히 변환된 축이 최대 분산방향과 정렬되도록 좌표회전을 수행함</li>
+<li>대안: Partial Least Square (PLS)</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/pca_limit2.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>추출된 X변수들이 분류가 잘 되거나 예측이 잘되는 그런 방향으로 추출된 것은 아니다. 분산이 최대화 되는 방향으로 추출된 것. 그렇기 때문에 항상 분류문제와 예측문제에 우리가 추출된  변수를 사용하더라도 잘 된다는 보장은 없다!</p>
 
 </div>
 </div>
