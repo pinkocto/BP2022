@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -126,7 +126,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#핵심-수행-절차-:-두-군집-사이의-유사성/거리-측정">핵심 수행 절차 : 두 군집 사이의 유사성/거리 측정 </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#K-평균-군집화-(K-Means-Clustering)">K-평균 군집화 (K-Means Clustering) </a></li>
+<li class="toc-entry toc-h3"><a href="#K-평균-군집화-(K-Means-Clustering)">K-평균 군집화 (K-Means Clustering) </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#무작위-초기-중심-설정의-위험을-피하고자-다양한-연구-존재">무작위 초기 중심 설정의 위험을 피하고자 다양한 연구 존재 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#K-평균-군집화의-문제점">K-평균 군집화의 문제점 </a></li>
 </ul>
 </li>
 </ul><!--
@@ -313,6 +318,40 @@ $$X = C_1 \cup C_2 \dots \cup C_k, \quad  C_i \cap C_j=\emptyset, \quad i \neq j
 <p>
 $$\underset{C}{\operatorname{\arg min}} \sum_{i=1}^K \sum_{x_j \in C_i} ||x_j-c_j||^2$$
 </p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="무작위-초기-중심-설정의-위험을-피하고자-다양한-연구-존재">
+<a class="anchor" href="#%EB%AC%B4%EC%9E%91%EC%9C%84-%EC%B4%88%EA%B8%B0-%EC%A4%91%EC%8B%AC-%EC%84%A4%EC%A0%95%EC%9D%98-%EC%9C%84%ED%97%98%EC%9D%84-%ED%94%BC%ED%95%98%EA%B3%A0%EC%9E%90-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%97%B0%EA%B5%AC-%EC%A1%B4%EC%9E%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>무작위 초기 중심 설정의 위험을 피하고자 다양한 연구 존재<a class="anchor-link" href="#%EB%AC%B4%EC%9E%91%EC%9C%84-%EC%B4%88%EA%B8%B0-%EC%A4%91%EC%8B%AC-%EC%84%A4%EC%A0%95%EC%9D%98-%EC%9C%84%ED%97%98%EC%9D%84-%ED%94%BC%ED%95%98%EA%B3%A0%EC%9E%90-%EB%8B%A4%EC%96%91%ED%95%9C-%EC%97%B0%EA%B5%AC-%EC%A1%B4%EC%9E%AC"> </a>
+</h4>
+<ul>
+<li>반복적으로 수행하여 가장 여러 번 나타나는 군집을 사용</li>
+<li>전체 데이터 중 일부만 샘플링하여 계층적 군집화를 수행한 뒤 초기 군집 중심 설정</li>
+<li>데이터 분포의 정보를 사용해서 초기 중심 설정</li>
+<li>하지만 많은 경우 초기 중심 설정이 최종 결과에 큰 영향을 미치지는 않음.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="K-평균-군집화의-문제점">
+<a class="anchor" href="#K-%ED%8F%89%EA%B7%A0-%EA%B5%B0%EC%A7%91%ED%99%94%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>K-평균 군집화의 문제점<a class="anchor-link" href="#K-%ED%8F%89%EA%B7%A0-%EA%B5%B0%EC%A7%91%ED%99%94%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90"> </a>
+</h3>
+<ul>
+<li>문제1 : <strong>서로 다른 크기</strong>의 군집을 잘 찾아내지 못함</li>
+<li>문제2 : <strong>서로 다른 밀도</strong>의 군집을 잘 찾아내지 못함</li>
+<li>문제3 : <strong>지역적 패턴이 존재</strong>하는 군집을 판별하기 어려움<ul>
+<li>(보는 위치마다 조금씩 다른 패턴이 보이는 것을 지역적 패턴이 존재한다고 한다.)</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
