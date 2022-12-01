@@ -35,3 +35,5 @@ You must save your notebook with the naming convention `YYYY-MM-DD-*.md`.  Examp
 `![]({{ site.baseurl }}/images/dist.PNG "두 군집 사이의 유사성/거리 측정")`
 
 
+# 마크다운으로 올렸을 때의 문제점
+나만 그런지는 모르겠지만.. 코드 실행 결과가 안나타난다. 흰 글자로 나타나서 기본 화면에 보이지 않는 것 같은데 드래그하면 보이긴한다.. 어떻게 해결하는지는 아직 못찾았다..ㅠㅠ
