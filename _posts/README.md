@@ -16,7 +16,7 @@ You must save your notebook with the naming convention `YYYY-MM-DD-*.md`.  Examp
 - [Jekyll posts](https://jekyllrb.com/docs/posts/)
 - [Example markdown post](https://github.com/fastai/fastpages/blob/master/_posts/2020-01-14-test-markdown-post.md)
 
-# picture problem solution
+# no-display My Blog.. Solution
 
 _notebooks에 올린 내용이 블로그에 업데이트가 안되는 경우가 종종 있다.ㅠㅠ
 어떤 문제인지 찾기도 매우 힘들고 시간도 오래걸리는 문제점이 있다.
