@@ -131,8 +131,8 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h4"><a href="##1.-Random-undersampling">#1. Random undersampling </a></li>
 <li class="toc-entry toc-h4"><a href="##2.-Tomek-links">#2. Tomek links </a></li>
-<li class="toc-entry toc-h4"><a href="##4.-CNN-(condensed-nearest-neighbor)">#4. CNN (condensed nearest neighbor) </a></li>
-<li class="toc-entry toc-h4"><a href="##4-OSS-(One-Side-Selection)">#4 OSS (One-Side Selection) </a></li>
+<li class="toc-entry toc-h4"><a href="##3.-CNN-(condensed-nearest-neighbor)">#3. CNN (condensed nearest neighbor) </a></li>
+<li class="toc-entry toc-h4"><a href="##4.-OSS-(One-Side-Selection)">#4. OSS (One-Side Selection) </a></li>
 <li class="toc-entry toc-h4"><a href="#Summary">Summary </a></li>
 <li class="toc-entry toc-h4"><a href="#[-🌞-장점-]">[ 🌞 장점 ] </a></li>
 <li class="toc-entry toc-h4"><a href="#[-🌚-단점-]">[ 🌚 단점 ] </a></li>
@@ -145,11 +145,8 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="##3.-Borderline---SMOTE">#3. Borderline - SMOTE </a></li>
 <li class="toc-entry toc-h4"><a href="##4.-ADASYN-(adaptive-synthetic-sampling-approach)">#4. ADASYN (adaptive synthetic sampling approach) </a></li>
 <li class="toc-entry toc-h4"><a href="#ADASYN-어떻게-생성하는가?">ADASYN 어떻게 생성하는가? </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h3"><a href="#Borderlin---SMOTE----vs.----ADASYN">Borderlin - SMOTE    vs.    ADASYN </a></li>
-<li class="toc-entry toc-h3"><a href="#oversampling---ADASYN-관련-논문">oversampling - ADASYN 관련 논문 </a>
-<ul>
+<li class="toc-entry toc-h4"><a href="#(*)-Borderlin---SMOTE----vs.----ADASYN">(*) Borderlin - SMOTE    vs.    ADASYN </a></li>
+<li class="toc-entry toc-h4"><a href="#(*)-oversampling---ADASYN-관련-논문">(*) oversampling - ADASYN 관련 논문 </a></li>
 <li class="toc-entry toc-h4"><a href="##5.-GAN">#5. GAN </a></li>
 </ul>
 </li>
@@ -689,8 +686,8 @@ $\to$ <font color="red">이상(소수)</font>을 정확히 찾아내지 못함</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="#4.-CNN-(condensed-nearest-neighbor)">
-<a class="anchor" href="##4.-CNN-(condensed-nearest-neighbor)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#4.</code> CNN (condensed nearest neighbor)<a class="anchor-link" href="##4.-CNN-(condensed-nearest-neighbor)"> </a>
+<h4 id="#3.-CNN-(condensed-nearest-neighbor)">
+<a class="anchor" href="##3.-CNN-(condensed-nearest-neighbor)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#3.</code> CNN (condensed nearest neighbor)<a class="anchor-link" href="##3.-CNN-(condensed-nearest-neighbor)"> </a>
 </h4>
 <blockquote>
 <p>1-NN 알고리즘을 통해 원데이터를 분류</p>
@@ -727,8 +724,8 @@ $\to$ <font color="red">이상(소수)</font>을 정확히 찾아내지 못함</
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="#4-OSS-(One-Side-Selection)">
-<a class="anchor" href="##4-OSS-(One-Side-Selection)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#4</code> OSS (One-Side Selection)<a class="anchor-link" href="##4-OSS-(One-Side-Selection)"> </a>
+<h4 id="#4.-OSS-(One-Side-Selection)">
+<a class="anchor" href="##4.-OSS-(One-Side-Selection)" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#4.</code> OSS (One-Side Selection)<a class="anchor-link" href="##4.-OSS-(One-Side-Selection)"> </a>
 </h4>
 <blockquote>
 <p>Tomek links + CNN</p>
@@ -1744,9 +1741,9 @@ $$synthetic = X + u \cdot (X(nn) - X)$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Borderlin---SMOTE----vs.----ADASYN">
-<a class="anchor" href="#Borderlin---SMOTE----vs.----ADASYN" aria-hidden="true"><span class="octicon octicon-link"></span></a>Borderlin - SMOTE    vs.    ADASYN<a class="anchor-link" href="#Borderlin---SMOTE----vs.----ADASYN"> </a>
-</h3>
+<h4 id="(*)-Borderlin---SMOTE----vs.----ADASYN">
+<a class="anchor" href="#(*)-Borderlin---SMOTE----vs.----ADASYN" aria-hidden="true"><span class="octicon octicon-link"></span></a>(*) Borderlin - SMOTE    vs.    ADASYN<a class="anchor-link" href="#(*)-Borderlin---SMOTE----vs.----ADASYN"> </a>
+</h4>
 </div>
 </div>
 </div>
@@ -1769,9 +1766,9 @@ $$synthetic = X + u \cdot (X(nn) - X)$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="oversampling---ADASYN-관련-논문">
-<a class="anchor" href="#oversampling---ADASYN-%EA%B4%80%EB%A0%A8-%EB%85%BC%EB%AC%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>oversampling - ADASYN 관련 논문<a class="anchor-link" href="#oversampling---ADASYN-%EA%B4%80%EB%A0%A8-%EB%85%BC%EB%AC%B8"> </a>
-</h3>
+<h4 id="(*)-oversampling---ADASYN-관련-논문">
+<a class="anchor" href="#(*)-oversampling---ADASYN-%EA%B4%80%EB%A0%A8-%EB%85%BC%EB%AC%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>(*) oversampling - ADASYN 관련 논문<a class="anchor-link" href="#(*)-oversampling---ADASYN-%EA%B4%80%EB%A0%A8-%EB%85%BC%EB%AC%B8"> </a>
+</h4>
 </div>
 </div>
 </div>
