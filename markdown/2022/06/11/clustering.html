@@ -221,7 +221,7 @@ window.onload = wrap_img;
   <li>Min(단일연결), max(완전연결), group average(평균연결), between centroid, Ward’s, …</li>
 </ul>
 
-<p><img src="./my_icons/dist.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/dist.PNG" alt="" title="두 군집 사이의 유사성/거리 측정"></p>
 
 <p><code class="language-plaintext highlighter-rouge">-</code> <strong>Ward’s method</strong> : Distance between two clusters, A and B, how much the sum of squares will increase when they are merged.</p>
 
@@ -255,11 +255,11 @@ window.onload = wrap_img;
 <ul>
   <li>
     <p>문제1 : <strong>서로 다른 크기</strong>의 군집을 잘 찾아내지 못함
-<img src="./my_icons/problem_1.PNG"></p>
+<img src="/BP2022/_notebooks/my_icons/problem_1.PNG" alt="" title="problem1"></p>
   </li>
   <li>
     <p>문제2 : <strong>서로 다른 밀도</strong>의 군집을 잘 찾아내지 못함
-<img src="./my_icons/problem_2.PNG"></p>
+<img src="/BP2022/_notebooks/my_icons/problem_2.PNG" alt="" title="problem2"></p>
   </li>
   <li>
     <p>문제3 : <strong>지역적 패턴이 존재</strong>하는 군집을 판별하기 어려움</p>
@@ -270,7 +270,7 @@ window.onload = wrap_img;
   </li>
 </ul>
 
-<p><img src="./my_icons/problem_3.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/problem_3.PNG" alt="" title="problem3"></p>
 
 <h3 id="3-군집화-최적의-군집-수-결정">
 <a class="anchor" href="#3-%EA%B5%B0%EC%A7%91%ED%99%94-%EC%B5%9C%EC%A0%81%EC%9D%98-%EA%B5%B0%EC%A7%91-%EC%88%98-%EA%B2%B0%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a><code class="language-plaintext highlighter-rouge">#3.</code> 군집화: 최적의 군집 수 결정</h3>
@@ -286,7 +286,7 @@ window.onload = wrap_img;
   <li>Elbow point에서 최적 군집 수가 결정되는 경우가 일반적</li>
 </ul>
 
-<p><img src="./my_icons/best_cluster.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/best_cluster.PNG" alt="" title="select best cluster number: k"></p>
 
 <h3 id="4-군집화-결과-측정-및-평가">
 <a class="anchor" href="#4-%EA%B5%B0%EC%A7%91%ED%99%94-%EA%B2%B0%EA%B3%BC-%EC%B8%A1%EC%A0%95-%EB%B0%8F-%ED%8F%89%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a><code class="language-plaintext highlighter-rouge">#4.</code> 군집화: 결과 측정 및 평가</h3>
@@ -309,7 +309,7 @@ window.onload = wrap_img;
 <a class="anchor" href="#%EA%B5%B0%EC%A7%91%ED%99%94-%ED%8F%89%EA%B0%80%EC%A7%80%ED%91%9C-1-sum-of-squared-error-sse" aria-hidden="true"><span class="octicon octicon-link"></span></a>군집화 평가지표 1: Sum of Squared Error (SSE)</h4>
 <p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>SSE</mtext><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></msubsup><msub><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><msub><mi>C</mi><mi>i</mi></msub></mrow></msub><mi>d</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><msub><mi>c</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\text{SSE} = \sum_{i=1}^k\sum_{x\in C_i}dist(x, c_i)^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">SSE</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3888em;vertical-align:-0.3998em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.989em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1786em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3998em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></p>
 
-<p><img src="./my_icons/sse_1.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/sse_1.PNG" alt=""></p>
 
 <ul>
   <li>
@@ -326,7 +326,7 @@ window.onload = wrap_img;
   <li>각 군집의 c(중심)으로부터 거리의 제곱의 합을 계산하는데 군집이 $K$개가 있는것. $K$에 따라서 값이 달라지게된다. 당연한 소리지만,,ㅎ</li>
 </ul>
 
-<p><img src="my_icons/sse_2.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/sse_2.PNG" alt=""></p>
 
 <ul>
   <li>위의 경우 ‘2또는 3에서 최적의 군집이다’라고 할 수 있겠다.</li>
@@ -346,7 +346,7 @@ window.onload = wrap_img;
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>S</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>S</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bar{S} = \frac{1}{n}\sum_{i=1}^{n}S(i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8201em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.9291em;vertical-align:-1.2777em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span></span>
 
-<p><img src="./my_icons/sil.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/sil.PNG" alt=""></p>
 
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>b</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>−</mo><mi>a</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><mrow><mtext>max</mtext><mo stretchy="false">{</mo><mi>a</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow></mfrac><mo separator="true">,</mo><mtext> </mtext><mo>−</mo><mn>1</mn><mo>≤</mo><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">S(i) = \frac{b(i)-a(i)}{\text{max}\{a(i),b(i)\}}, \space -1 \leq(i) \leq1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">max</span></span><span class="mopen">{</span><span class="mord mathnormal">a</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)}</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">a</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>
 
@@ -364,7 +364,7 @@ window.onload = wrap_img;
   </li>
 </ul>
 
-<p><img src="./my_icons/sil_pic.PNG"></p>
+<p><img src="/BP2022/_notebooks/my_icons/sil_pic.PNG" alt=""></p>
 
 <blockquote>
   <p>Tip: 실루엣으로 평가를 할때는 K=2일 때가 많은 경우 가장 크게 나오니 K가 2인 것을 선택하는 것보다는 2번째로 큰 실루엣값(second best)이 해당하는 K의 군집을 사용하는 것이 좋다.</p>
