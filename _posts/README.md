@@ -16,7 +16,8 @@ You must save your notebook with the naming convention `YYYY-MM-DD-*.md`.  Examp
 - [Jekyll posts](https://jekyllrb.com/docs/posts/)
 - [Example markdown post](https://github.com/fastai/fastpages/blob/master/_posts/2020-01-14-test-markdown-post.md)
 
-# no-display My Blog.. Solution
+## 꿀팁 정리중..
+### 왜 Acition에는 문제가 없는데 안올라갈까?
 
 `_notebooks`에 올린 내용이 블로그에 업데이트가 안되는 경우가 종종 있다.ㅠㅠ
 어떤 문제인지 찾기도 매우 힘들고 시간도 오래걸리는 문제점이 있다.
@@ -35,5 +36,5 @@ You must save your notebook with the naming convention `YYYY-MM-DD-*.md`.  Examp
 `![]({{ site.baseurl }}/images/dist.PNG "두 군집 사이의 유사성/거리 측정")`
 
 
-# 마크다운으로 올렸을 때의 문제점
+## 마크다운으로 올렸을 때의 문제점
 나만 그런지는 모르겠지만.. 코드 실행 결과가 안나타난다. 흰 글자로 나타나서 기본 화면에 보이지 않는 것 같은데 드래그하면 보이긴한다.. 어떻게 해결하는지는 아직 못찾았다..ㅠㅠ
