@@ -98,7 +98,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -558,6 +558,84 @@ $\to$ <font color="red">이상(소수)</font>을 정확히 찾아내지 못함</
 <h4 id="#2.-Tomek-links">
 <a class="anchor" href="##2.-Tomek-links" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#2.</code> Tomek links<a class="anchor-link" href="##2.-Tomek-links"> </a>
 </h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>두 범주 사이를 탐지하고 정리를 통해 부정확한 분류경계선 방지</p>
+<p>정의: $d(x_i,x_k) &lt; d(x_i, x_j) 또는 d(x_j,x_k) &lt; d(x_i, x_j)$가 되는 관측치 $x_k$가 없는 경우</p>
+<p>$\to$ 두 샘플 $x_i, x_j$는 Tomek links를 형성</p>
+<p>$\to$ 둘 중 하나는 노이즈 이거나 둘 다 경계선 근처에 있음</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/tomek_links.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>두 점사이에는 k점이 없어야 한다.</p>
+<p>k점은 뭐냐? 하면은 두 점사이(다수범주의 점1, 소수범주의 점1)에 어떠한 한점으로 각 점과 k점이 연결되었을 때 i와 j를 연결한 것보다 거리보다 작은 그런 중간에 있는 점이 없을 때 그 두 점을 연결한것을 tomek links라고 한다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/tomek_links_ex1.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>보라색으로 표시한 부분이 Tomek link</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/tomek_links_ex2.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tomek links에 해당하는 다수 범주에 속한 관측치가 제거되었기떄문에 언더샘플링이 된 것!</p>
+
 </div>
 </div>
 </div>
