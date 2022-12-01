@@ -81,16 +81,16 @@ $$\underset{C}{\operatorname{\arg min}} \sum_{i=1}^K \sum_{x_j \in C_i} ||x_j-c_
 
 #### K-평균 군집화의 문제점
 - 문제1 : **서로 다른 크기**의 군집을 잘 찾아내지 못함
-![]({{ site.baseurl }}/_notebooks/my_icons/problem_1.PNG "problem1") 
+![]({{ site.baseurl }}/images/problem_1.PNG "problem1") 
 
 - 문제2 : **서로 다른 밀도**의 군집을 잘 찾아내지 못함
-![]({{ site.baseurl }}/_notebooks/my_icons/problem_2.PNG "problem2") 
+![]({{ site.baseurl }}/images/problem_2.PNG "problem2") 
 
 - 문제3 : **지역적 패턴이 존재**하는 군집을 판별하기 어려움
     - (보는 위치마다 조금씩 다른 패턴이 보이는 것을 지역적 패턴이 존재한다고 한다.)
     - 지역적 패턴이 존재할 때 Geodesic distance를 이용한다.
     
-![]({{ site.baseurl }}/_notebooks/my_icons/problem_3.PNG "problem3") 
+![]({{ site.baseurl }}/images/problem_3.PNG "problem3") 
 
 ### `#3.` 군집화: 최적의 군집 수 결정
 > 어떻게 최적의 군집 수를 결정할 것인가?
@@ -100,7 +100,7 @@ $$\underset{C}{\operatorname{\arg min}} \sum_{i=1}^K \sum_{x_j \in C_i} ||x_j-c_
 - 다양한 군집 수에 대해 성능 평가 지표를 도시하여 최적의 군집 수 선택
 - Elbow point에서 최적 군집 수가 결정되는 경우가 일반적
 
-![]({{ site.baseurl }}/_notebooks/my_icons/best_cluster.PNG "select best cluster number: k") 
+![]({{ site.baseurl }}/images/best_cluster.PNG "select best cluster number: k") 
 
 ### `#4.` 군집화: 결과 측정 및 평가
 > 어떻게 군집화 결과를 측정/평가할 것인가?
@@ -116,7 +116,7 @@ $$\underset{C}{\operatorname{\arg min}} \sum_{i=1}^K \sum_{x_j \in C_i} ||x_j-c_
 #### 군집화 평가지표 1: Sum of Squared Error (SSE)
 $$\text{SSE} = \sum_{i=1}^k\sum_{x\in C_i}dist(x, c_i)^2$$
 
-![]({{ site.baseurl }}/_notebooks/my_icons/sse_1.PNG)
+![]({{ site.baseurl }}/images/sse_1.PNG)
 
 - 군집의 중심을 정의하고 군집을 중심으로부터 거리를 쭉 본것.. 차이의 제곱
 
@@ -128,7 +128,7 @@ $$ SSE = SSE_1 + SSE_2 $$
 
 - 각 군집의 c(중심)으로부터 거리의 제곱의 합을 계산하는데 군집이 $K$개가 있는것. $K$에 따라서 값이 달라지게된다. 당연한 소리지만,,ㅎ
 
-![]({{ site.baseurl }}/_notebooks/my_icons/sse_2.PNG)
+![]({{ site.baseurl }}/images/sse_2.PNG)
 
 
 - 위의 경우 '2또는 3에서 최적의 군집이다'라고 할 수 있겠다.
@@ -146,7 +146,7 @@ $$S(i) = \frac{b(i)-a(i)}{\text{max}\{a(i),b(i)\}}, \space -1 \leq(i) \leq1$$
 $$\bar{S} = \frac{1}{n}\sum_{i=1}^{n}S(i)$$
 
 
-![]({{ site.baseurl }}/_notebooks/my_icons/sil.PNG)
+![]({{ site.baseurl }}/images/sil.PNG)
 
 
 
