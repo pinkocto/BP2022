@@ -55,7 +55,7 @@ title: 군집분석
 
 - Min(단일연결), max(완전연결), group average(평균연결), between centroid, Ward's, ...
 
-![]({{ site.baseurl }}/_notebooks/my_icons/dist.PNG "두 군집 사이의 유사성/거리 측정") 
+![]({{ site.baseurl }}/images/dist.PNG "두 군집 사이의 유사성/거리 측정") 
 
 `-` **Ward's method** : Distance between two clusters, A and B, how much the sum of squares will increase when they are merged.
 
