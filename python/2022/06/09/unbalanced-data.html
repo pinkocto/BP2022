@@ -120,7 +120,19 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#불균형-데이터-특징">불균형 데이터 특징 </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#왜-문제인가?">왜 문제인가? </a></li>
-<li class="toc-entry toc-h3"><a href="#성능평가">성능평가 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#성능평가">성능평가 </a></li>
+<li class="toc-entry toc-h2"><a href="#해결방법은?">해결방법은? </a></li>
+<li class="toc-entry toc-h2"><a href="#데이터를-조정해서-해결">데이터를 조정해서 해결 </a></li>
+<li class="toc-entry toc-h2"><a href="#데이터를-조정해서-해결-(Sampling)">데이터를 조정해서 해결 (Sampling) </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#--언더-샘플링">- 언더 샘플링 </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="##1.-Random-undersampling">#1. Random undersampling </a></li>
+<li class="toc-entry toc-h4"><a href="##2.-Tomek-links">#2. Tomek links </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -165,16 +177,11 @@ window.onload = wrap_img;
 <h3 id="왜-문제인가?">
 <a class="anchor" href="#%EC%99%9C-%EB%AC%B8%EC%A0%9C%EC%9D%B8%EA%B0%80?" aria-hidden="true"><span class="octicon octicon-link"></span></a>왜 문제인가?<a class="anchor-link" href="#%EC%99%9C-%EB%AC%B8%EC%A0%9C%EC%9D%B8%EA%B0%80?"> </a>
 </h3>
-<p><font color="blue">**정상(다수)**</font>을 정확히 분류 vs. <font color="red">**이상(소수)**</font>을 정확히 분류</p>
-<ul>
-<li>
-<p>일반적으로 <font color="red">**이상(소수)**</font>을 정확히 분류하는 것이 중요</p>
-</li>
-<li>
-<p>적절한 분류경계선이 형성되지 못함
-$\to$ <font color="red">**이상(소수)**</font>을 정확히 찾아내지 못함</p>
-</li>
-</ul>
+<p><font color="blue">정상(다수)</font>을 정확히 분류 vs. <font color="red">이상(소수)</font>을 정확히 분류</p>
+<p><code>#1.</code> 일반적으로 <font color="red">이상(소수)</font>을 정확히 분류하는 것이 중요</p>
+<p><code>#2.</code> 적절한 분류경계선이 형성되지 못함
+$\to$ <font color="red">이상(소수)</font>을 정확히 찾아내지 못함</p>
+<p><code>#3.</code> 높은 예측 정확도를 보임(?) 모델 성능에 대한 왜곡이 있을 수 있음.</p>
 
 </div>
 </div>
@@ -269,9 +276,9 @@ $\to$ <font color="red">**이상(소수)**</font>을 정확히 찾아내지 못�
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="성능평가">
+<h2 id="성능평가">
 <a class="anchor" href="#%EC%84%B1%EB%8A%A5%ED%8F%89%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>성능평가<a class="anchor-link" href="#%EC%84%B1%EB%8A%A5%ED%8F%89%EA%B0%80"> </a>
-</h3>
+</h2>
 </div>
 </div>
 </div>
@@ -313,11 +320,244 @@ $\to$ <font color="red">**이상(소수)**</font>을 정확히 찾아내지 못�
 <li>
 <p>왜냐하면 정상데이터는  다 맞췄지만 우리가 관심있는 것은 이상이고, 이상관점에서만 봤을때는 반 밖에 못맞췄는데?? 이것이 어떻게 좋은 모델일까?</p>
 </li>
-<li>
-<p>따라서 예측 정확도는 높게 나오지만 그것을 곧이곧대로 해석하면 안된다!!</p>
-</li>
 </ul>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash flash-error">
+    <svg class="octicon octicon-alert" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path></svg>
+    <strong>Warning: </strong>예측 정확도는 높게 나오지만 그것을 곧이곧대로 해석하면 안된다!!
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="해결방법은?">
+<a class="anchor" href="#%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95%EC%9D%80?" aria-hidden="true"><span class="octicon octicon-link"></span></a>해결방법은?<a class="anchor-link" href="#%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95%EC%9D%80?"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>불균형 데이터의 해결방안은 크게 두가지로 볼 수 있다.</p>
+<ol>
+<li>
+<p>첫번째는 데이터를 조절해서 해결한다.</p>
+</li>
+<li>
+<p>두번째는 분류모델 자체를 조절해서 해결한다.</p>
+</li>
+</ol>
+<p>세부적으로 불균형 데이터를 해결하는 방법은 3개가 있다고 볼 수 있다.</p>
+<ol>
+<li>샘플링 기법 (Sampling method)</li>
+<li>비용 기반 학습 (Cost sensitive leraning)</li>
+<li>단일 클래스 분류기법 (Novelty detection)</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이번 시간에는 샘플링 기법에 대해서 알아보자.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="데이터를-조정해서-해결">
+<a class="anchor" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A1%B0%EC%A0%95%ED%95%B4%EC%84%9C-%ED%95%B4%EA%B2%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>데이터를 조정해서 해결<a class="anchor-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A1%B0%EC%A0%95%ED%95%B4%EC%84%9C-%ED%95%B4%EA%B2%B0"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/unbal_sol.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="데이터를-조정해서-해결-(Sampling)">
+<a class="anchor" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A1%B0%EC%A0%95%ED%95%B4%EC%84%9C-%ED%95%B4%EA%B2%B0-(Sampling)" aria-hidden="true"><span class="octicon octicon-link"></span></a>데이터를 조정해서 해결 (Sampling)<a class="anchor-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A1%B0%EC%A0%95%ED%95%B4%EC%84%9C-%ED%95%B4%EA%B2%B0-(Sampling)"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/unbal_sampling.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>샘플링 기법은 크게 언더 샘플링과 오버 샘플링으로 나눈다.</p>
+<p>언더샘플링은 다수 범주를 줄여서 소수범주의 개수와 비슷하게 만들자</p>
+<p>오버샘플링은 소수범주의 개수를 증폭시켜 다수 범주의 개수와 비슷하게 만들자..</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="--언더-샘플링">
+<a class="anchor" href="#--%EC%96%B8%EB%8D%94-%EC%83%98%ED%94%8C%EB%A7%81" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>-</code> 언더 샘플링<a class="anchor-link" href="#--%EC%96%B8%EB%8D%94-%EC%83%98%ED%94%8C%EB%A7%81"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="#1.-Random-undersampling">
+<a class="anchor" href="##1.-Random-undersampling" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#1.</code> Random undersampling<a class="anchor-link" href="##1.-Random-undersampling"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/random_undersampling.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/random_under.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/random_under_ex1.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/random_under_ex2.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>또 이런식으로 샘플링 될 수도 있겠지.. 이런 경우에는 분류경계선이 다음과 같다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/./my_icons/random_under_ex2-v2.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/BP2022/images/copied_from_nb/my_icons/random_under_ex3.PNG" alt="">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>랜덤 언더샘플링은 무작위로 샘플링하기 때문에 할 때마다 다른 결과가 나올 수 있다.</p>
+<p>굉장히 쉬운방법이긴 하나 단점으로 작용할 수 있다.</p>
+<p>잘 작동할때도 많이 있지만(의외로 잘 작동한다.) 샘플링할 때마다 성능이 달라질 수 있다는 문제가 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="#2.-Tomek-links">
+<a class="anchor" href="##2.-Tomek-links" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>#2.</code> Tomek links<a class="anchor-link" href="##2.-Tomek-links"> </a>
+</h4>
 </div>
 </div>
 </div>
